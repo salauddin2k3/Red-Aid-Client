@@ -21,6 +21,7 @@ import CountryDetails from './Components/CountryDetails';
 import NeedVolunteer from './Components/NeedVolunteer';
 import AddVolunteerPost from './Components/AddVolunteerPost';
 import ManageMyPost from './Components/ManageMyPost';
+import BeAVolunteer from './Components/BeAVolunteer';
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: '/details/:id',
         element: <PrivateRoute><Details></Details></PrivateRoute>,
+      },
+      {
+        path: '/be-a-volunteer/:id',
+        element: <PrivateRoute><BeAVolunteer></BeAVolunteer></PrivateRoute>
       },
       {
         path: 'detailsInfo/:id',

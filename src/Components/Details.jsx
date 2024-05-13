@@ -48,7 +48,7 @@ const Details = () => {
                         <p className="mt-4 text-lg font-bold  font-work">Deadline : {userData.deadline} </p>
                         <p className="mt-4 text-lg font-bold  font-work">Needed Volunteers:  ({userData.volunteersNeeded}) </p>
                     </div>
-                    <Link><button className="btn bg-[#BA006F] text-white w-full">Be a Volunteer</button></Link>
+                    <Link to={`/be-a-volunteer/${userData._id}`}><button className="btn bg-[#BA006F] text-white w-full">Be a Volunteer</button></Link>
                 </div>
             </div>
         </div>

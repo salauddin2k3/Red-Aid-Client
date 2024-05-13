@@ -1,0 +1,149 @@
+import { useContext, useEffect, useState } from "react";
+import { MdVolunteerActivism } from "react-icons/md";
+import { useParams } from "react-router-dom";
+import { AuthContext } from "../Providers/AuthProvider";
+
+
+const BeAVolunteer = () => {
+
+    const { user } = useContext(AuthContext);
+
+    console.log(user);
+
+
+    const { id } = useParams();
+
+    const [postData, setPostData] = useState([]);
+
+    console.log(postData.email);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/singlePost/${id}`)
+            .then(res => res.json())
+            .then(data => {
+                setPostData(data);
+            })
+    }, [id])
+
+
+    return (
+        <div className="">
+            <div className="py-10 px-20 border border-gray-200 rounded-xl shadow-lg ">
+                <div className="flex items-center justify-center gap-6">
+                    <div className="text-3xl text-[#00929E]"><MdVolunteerActivism /></div>
+                    <h2 className="text-center text-4xl text-[#BA006F] font-bold">Be a Volunteer</h2>
+                </div>
+                <div className="w-full p-4 mt-10 lg:p-16 bg-[#1313130d] rounded-xl flex justify-center">
+                    <img className="w-fit rounded-xl" src={postData.thumbnail} alt="" />
+                </div>
+                <form action="">
+                    <div className="flex gap-10 items-center justify-center mt-12">
+                        <div className="w-full">
+                            <div>
+                                <h2 className="text-lg font-semibold text-[#00929E]">Post Title</h2>
+                                <label className="mt-2 input input-bordered flex items-center gap-2">
+                                    <input disabled defaultValue={postData.postTitle} type="text" name="post-title" className="grow" placeholder="Post Title" />
+                                </label>
+                            </div>
+                            <div className="mt-4">
+                                <h2 className="text-lg font-semibold text-[#00929E]">Location</h2>
+                                <label className="mt-2 input input-bordered flex items-center gap-2">
+                                    <input disabled defaultValue={postData.location} type="text" name="location" className="grow" placeholder="Location" />
+                                </label>
+                            </div>
+                            <div className="mt-4">
+                                <h2 className="text-lg font-semibold text-[#00929E]">Thumbnail Url</h2>
+                                <label className="mt-2 input input-bordered flex items-center gap-2">
+                                    <input disabled defaultValue={postData.thumbnail} type="text" name="thumbnail" className="grow" placeholder="Thumbnail Url" />
+                                </label>
+                            </div>
+                            <div className="mt-4">
+                                <h2 className="text-lg font-semibold text-[#00929E]">Organizer Name</h2>
+                                <label className="mt-2 input input-bordered flex items-center gap-2">
+                                    <input disabled defaultValue={postData.name} type="text" name="or-name" className="grow" placeholder="Thumbnail Url" />
+                                </label>
+                            </div>
+                        </div>
+                        <div className="w-full">
+                            {/* Test */}
+                            <div>
+                                <h2 className="text-lg text-[#00929E] font-semibold">Category</h2>
+                                <label className="mt-2 input input-bordered flex items-center gap-2">
+                                    <input disabled defaultValue={postData.category} type="text" name="category" className="grow" placeholder="Thumbnail Url" />
+                                </label>
+                            </div>
+                            {/* Test */}
+                            <div className="mt-4">
+                                <h2 className="text-lg font-semibold text-[#00929E]">No. of volunteers needed</h2>
+                                <label className="mt-2 input input-bordered flex items-center gap-2">
+                                    <input disabled defaultValue={postData.volunteersNeeded} type="number" name="needed-volunteer" className="grow" placeholder="No. of volunteers needed" />
+                                </label>
+                            </div>
+                            <div className="mt-4">
+                                <h2 className="text-lg font-semibold text-[#00929E]">Deadline</h2>
+                                <label className="mt-2 input input-bordered flex items-center gap-2">
+                                    <input disabled defaultValue={postData.deadline} type="date" name="deadline" className="grow" placeholder="Deadline" />
+                                </label>
+                            </div>
+                            <div className="mt-4">
+                                <h2 className="text-lg font-semibold text-[#00929E]">Organizer Email</h2>
+                                <label className="mt-2 input input-bordered flex items-center gap-2">
+                                    <input disabled defaultValue={postData.email} type="text" name="or-email" className="grow" placeholder="or-email" />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="mt-4">
+                        <h2 className="text-lg text-[#00929E] font-semibold">Short Description</h2>
+                        <p className="mt-2 border border-gray-300 rounded-xl p-4">{postData.description}</p>
+                        {/* <label className="mt-2 input input-bordered flex items-center gap-2">
+                            <input disabled defaultValue={postData.description} type="text" name="description" className="grow" placeholder="short description" />
+                        </label> */}
+                    </div>
+                    <div className="mt-8">
+                        <h2 className="text-2xl font-semibold text-[#00929E] text-center">Volunteer Info</h2>
+                        <div className="mt-3 border border-[#BA006F] rounded-xl p-6">
+                            {/* Volunteer Info */}
+                            <div className="flex gap-10 items-center justify-center mt-3">
+                                <div className="w-full">
+                                    <div>
+                                        <h2 className="text-lg font-semibold text-[#00929E]">Volunteer Name</h2>
+                                        <label className="mt-2 input input-bordered flex items-center gap-2">
+                                            <input disabled defaultValue={user?.displayName} type="text" name="post-title" className="grow" placeholder="Post Title" />
+                                        </label>
+                                    </div>
+                                    <div className="mt-3">
+                                        <h2 className="text-lg font-semibold text-[#00929E]">Any Suggestion?</h2>
+                                        <label className="mt-2 input input-bordered flex items-center gap-2">
+                                            <input type="text" name="suggestion" className="grow" placeholder="Suggestion" />
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="w-full">
+                                    {/* Test */}
+                                    <div>
+                                        <h2 className="text-lg text-[#00929E] font-semibold">Volunteer Email</h2>
+                                        <label className="mt-2 input input-bordered flex items-center gap-2">
+                                            <input disabled defaultValue={user?.email} type="text" name="category" className="grow" placeholder="Thumbnail Url" />
+                                        </label>
+                                    </div>
+                                    <div className="mt-3">
+                                        <h2 className="text-lg text-[#00929E] font-semibold">Status</h2>
+                                        <div className="mt-2 border border-gray-300 rounded-lg p-3">
+                                            <h2 className="font-semibold italic text-[#BA006F]">Requested</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="mt-4">
+                        <button className="btn w-full text-white mt-6 bg-[#BA006F]">Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
+};
+
+export default BeAVolunteer;
