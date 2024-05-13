@@ -8,14 +8,10 @@ const BeAVolunteer = () => {
 
     const { user } = useContext(AuthContext);
 
-    console.log(user);
-
 
     const { id } = useParams();
 
     const [postData, setPostData] = useState([]);
-
-    console.log(postData.email);
 
     useEffect(() => {
         fetch(`http://localhost:5000/singlePost/${id}`)
@@ -24,6 +20,26 @@ const BeAVolunteer = () => {
                 setPostData(data);
             })
     }, [id])
+
+
+    const handleTest = e => {
+        e.preventDefault();
+        const form = new FormData(e.currentTarget);
+        const postTitle = postData.postTitle;
+        const location = postData.location;
+        const thumbnail = postData.thumbnail;
+        const category = postData.category;
+        const volunteersNeeded = postData.volunteersNeeded;
+        const deadline = postData.deadline;
+        const description = postData.description;
+        const orName = postData.name;
+        const orEmail = postData.email;
+        const suggestion = form.get('suggestion');
+        const volEmail = user?.email;
+        const volName = user?.displayName;
+        const newInfo = { postTitle, location, thumbnail, category, volunteersNeeded, deadline, description, volName, volEmail, orName, orEmail, suggestion };
+        console.log(newInfo);
+    }
 
 
     return (
@@ -36,7 +52,7 @@ const BeAVolunteer = () => {
                 <div className="w-full p-4 mt-10 lg:p-16 bg-[#1313130d] rounded-xl flex justify-center">
                     <img className="w-fit rounded-xl" src={postData.thumbnail} alt="" />
                 </div>
-                <form action="">
+                <form onSubmit={handleTest} action="">
                     <div className="flex gap-10 items-center justify-center mt-12">
                         <div className="w-full">
                             <div>
@@ -95,10 +111,10 @@ const BeAVolunteer = () => {
                     </div>
                     <div className="mt-4">
                         <h2 className="text-lg text-[#00929E] font-semibold">Short Description</h2>
-                        <p className="mt-2 border border-gray-300 rounded-xl p-4">{postData.description}</p>
-                        {/* <label className="mt-2 input input-bordered flex items-center gap-2">
+                        {/* <p className="mt-2 border border-gray-300 rounded-xl p-4">{postData.description}</p> */}
+                        <label className="mt-2 input input-bordered flex items-center gap-2">
                             <input disabled defaultValue={postData.description} type="text" name="description" className="grow" placeholder="short description" />
-                        </label> */}
+                        </label>
                     </div>
                     <div className="mt-8">
                         <h2 className="text-2xl font-semibold text-[#00929E] text-center">Volunteer Info</h2>
