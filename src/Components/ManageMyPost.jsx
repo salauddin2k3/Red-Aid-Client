@@ -1,9 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import Estate from "./Estate";
+import { useContext, useEffect, useState, } from "react";
+import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../Providers/AuthProvider";
+import MyListInfo from "./MyListInfo";
 
 
-const Estates = () => {
+const ManageMyPost = () => {
 
     const { user } = useContext(AuthContext);
 
@@ -11,8 +12,12 @@ const Estates = () => {
 
     const [info, setInfo] = useState([]);
 
+    // console.log(info)
+
+    // console.log(user);
+
     useEffect(() => {
-        fetch('http://localhost:5000/allInfo')
+        fetch(`http://localhost:5000/myInfo/${user?.email}`)
             .then(res => res.json())
             .then((data) => {
                 // console.log(data);
@@ -23,17 +28,18 @@ const Estates = () => {
 
     return (
         <div className="">
-            <h2 className="text-5xl font-bold text-center mt-20">Tourists Spots:</h2>
+            <Helmet><title>My List</title></Helmet>
+            <h2 className="text-5xl font-bold text-center mt-20">My Added Spots:</h2>
             <div className="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {
-                    info?.map(info => <Estate
+                    info?.map(info => <MyListInfo
                         info={info}
                         key={info._id}
-                    ></Estate>)
+                    ></MyListInfo>)
                 }
             </div>
         </div>
     );
 };
 
-export default Estates;
+export default ManageMyPost;

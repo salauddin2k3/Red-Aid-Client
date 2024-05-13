@@ -55,7 +55,7 @@ const UpdateSpot = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    navigate(navigateLocation?.state ? navigateLocation.state : '/my-list');
+                    navigate(navigateLocation?.state ? navigateLocation.state : '/my-post');
                 }
             })
     };

@@ -32,7 +32,6 @@ const Navbar = () => {
         <li><NavLink to={'/'}><span className=" text-base font-medium">Home</span></NavLink></li>
         <li><NavLink to={'/need-volunteer'}><span className="text-base font-medium ">Need Volunteer</span></NavLink></li>
         {/* <li><NavLink to={'/update'}><span className="text-base font-medium ">Update Profile</span></NavLink></li> */}
-        <li><NavLink to={'/my-list'}><span className="text-base font-medium ">My List</span></NavLink></li>
 
     </>
 
@@ -115,7 +114,7 @@ const Navbar = () => {
                                 </summary>
                                 <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
                                     <li><NavLink to={'/add-volunteer'}><span className="text-base font-medium ">Add Volunteer Post</span></NavLink></li>
-                                    <li><a className="text-base font-medium ">Manage My Post</a></li>
+                                    <li><NavLink to={'/my-post'}><span className="text-base font-medium ">My List</span></NavLink></li>
                                 </ul>
                             </details>
                         </div>
