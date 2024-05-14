@@ -64,8 +64,31 @@ const BeAVolunteer = () => {
                     });
                     navigate(navigateLocation?.state ? navigateLocation.state : '/my-post');
                 }
-            })
-    }
+            });
+
+        fetch(`http://localhost:5000/updateINCPost/${id}`, {
+            method: "PUT",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify()
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                if (data?.matchedCount > 0) {
+                    console.log(data);
+                    // alert("data Update")
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Requested Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    navigate(navigateLocation?.state ? navigateLocation.state : '/my-post');
+                }
+            });
+
+    };
 
 
     return (

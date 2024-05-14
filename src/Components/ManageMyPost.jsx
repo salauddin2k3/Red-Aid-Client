@@ -72,21 +72,19 @@ const ManageMyPost = () => {
                                 }
                             </div>
                     } */}
+                    {/* <div>
+                        {
+                            anotherInfo?.map(anotherInfo => <MyVolunteerRequest
+                                anotherInfo={anotherInfo}
+                                key={anotherInfo._id}
+                            ></MyVolunteerRequest>)
+                        }
+                    </div> */}
                     {
-                        anotherInfo
-                            ?
-                            <div className="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {
-                                    anotherInfo?.map(anotherInfo => <MyVolunteerRequest
-                                        anotherInfo={anotherInfo}
-                                        key={anotherInfo._id}
-                                    ></MyVolunteerRequest>)
-                                }
-                            </div>
-                            :
-                            <div>
-                                <NoDataLottie></NoDataLottie>
-                            </div>
+                        anotherInfo?.map(anotherInfo => <MyVolunteerRequest
+                            anotherInfo={anotherInfo}
+                            key={anotherInfo._id}
+                        ></MyVolunteerRequest>)
                     }
                 </div>
             </div>

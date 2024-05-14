@@ -86,13 +86,6 @@ const MyVolunteerRequest = (anotherInfo) => {
                                 </div>
                             </div>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
-                            <div className="mt-5 flex items-center justify-between">
-                                <div className="w-full border-2 flex flex-col items-center border-[#BA006F] rounded-lg p-9">
-                                    <p className="text-lg font-bold  font-work">Deadline : {anotherInfo.anotherInfo.deadline} </p>
-                                    <p className="mt-4 text-lg font-bold  font-work">Needed Volunteers:  ({anotherInfo.anotherInfo.volunteersNeeded}) </p>
-                                </div>
-                            </div>
-                            <div className=' mt-6 border-b-2 border-dashed'></div>
                             <div className="mt-5 flex items-center justify-around">
                                 <button onClick={() => handleDelete(anotherInfo.anotherInfo._id)} className="btn w-full text-white bg-[#BA006F] px-16">Cancel</button>
                             </div>
