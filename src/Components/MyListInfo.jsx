@@ -53,7 +53,7 @@ const MyListInfo = (info) => {
                     <div>
                         <div className='bg-[#F3F3F3] py-7 px-7 rounded-xl'>
                             <div className='flex justify-center items-center'>
-                                <img className='rounded-xl' src={info.info.imageUrl} alt="" />
+                                <img className='rounded-xl' src={info.info.thumbnail} alt="" />
                             </div>
                         </div>
                         <div>
@@ -64,45 +64,36 @@ const MyListInfo = (info) => {
                                     } */}
                             </div>
                             <div className='mt-5'>
-                                <h2 className='text-2xl font-bold '>{info.info.spotName}</h2>
-                                <h3 className="mt-2 text-sm font-semibold"></h3>
+                                <h2 className='text-2xl font-bold '>{info.info.postTitle}</h2>
                                 <p className='mt-6 text-base font-medium  font-work'>{info.info.description}</p>
                             </div>
                         </div>
                         <div className=''>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
-                            <div className="mt-5 flex justify-around items-center">
-                                <div><h3 className='text-base font-medium  font-work'> <span className="font-bold">Country:</span> {info.info.country}</h3></div>
-                                <div className="flex gap-2 items-center">
-                                    <div>
-                                        <FaLocationDot />
-                                    </div>
-                                    <div>
-                                        <h3 className='text-base font-medium  font-work'>{info.info.location}</h3>
+                            <div className="mt-5 flex items-center justify-between">
+
+                                <div className="flex items-center mt-4 justify-center gap-20">
+                                    <h2 className="font-bold  font-work">Category: <span className="font-normal">{info.info.category}</span></h2>
+                                    <div className="flex items-center gap-3">
+                                        <div>
+                                            <FaLocationDot className="text-xl " />
+                                        </div>
+                                        <div>
+                                            <h3 className='font-bold  font-work'>{info.info.location}</h3>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
                             <div className="mt-5 flex items-center justify-between">
-                                <div>
-                                    <h3 className='text-base font-medium  font-work'> <span className="font-bold">Average Cost:</span> ${info.info.cost}</h3>
-                                </div>
-                                <div>
-                                    <h3 className='text-base font-medium  font-work'><span className="font-bold">Visitors: </span> {info.info.visitor}</h3>
-                                </div>
-                            </div>
-                            <div className=' mt-6 border-b-2 border-dashed'></div>
-                            <div className="mt-5 flex items-center justify-between">
-                                <div>
-                                    <h3 className='text-base font-medium  font-work'> <span className="font-bold">Best Season:</span> {info.info.seasonality}</h3>
-                                </div>
-                                <div>
-                                    <h3 className='text-base font-medium  font-work'><span className="font-bold">Time:</span>  Minimum {info.info.travelTime}</h3>
+                                <div className="w-full border-2 flex flex-col items-center border-gray-400 rounded-lg p-9">
+                                    <p className="text-lg font-bold  font-work">Deadline : {info.info.deadline} </p>
+                                    <p className="mt-4 text-lg font-bold  font-work">Needed Volunteers:  ({info.info.volunteersNeeded}) </p>
                                 </div>
                             </div>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
                             <div className="mt-5 flex items-center justify-around">
-                                <Link to={`/update-spot/${info.info._id}`}><button className="btn btn-accent px-16">Update</button></Link>
+                                <Link to={`/update-post/${info.info._id}`}><button className="btn btn-accent px-16">Update</button></Link>
                                 <button onClick={() => handleDelete(info.info._id)} className="btn btn-error px-16">Delete</button>
                             </div>
                         </div>

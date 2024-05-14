@@ -1,12 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { MdVolunteerActivism } from "react-icons/md";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const BeAVolunteer = () => {
 
     const { user } = useContext(AuthContext);
+
+    const navigateLocation = useLocation();
+    const navigate = useNavigate();
 
 
     const { id } = useParams();
@@ -19,8 +23,7 @@ const BeAVolunteer = () => {
             .then(data => {
                 setPostData(data);
             })
-    }, [id])
-
+    }, [id]);
 
     const handleTest = e => {
         e.preventDefault();
@@ -39,6 +42,28 @@ const BeAVolunteer = () => {
         const volName = user?.displayName;
         const newInfo = { postTitle, location, thumbnail, category, volunteersNeeded, deadline, description, volName, volEmail, orName, orEmail, suggestion };
         console.log(newInfo);
+
+
+        fetch("http://localhost:5000/addNewPost", {
+            method: "POST",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify(newInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data?.insertedId) {
+                    // alert("data added");
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Request Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    navigate(navigateLocation?.state ? navigateLocation.state : '/my-post');
+                }
+            })
     }
 
 

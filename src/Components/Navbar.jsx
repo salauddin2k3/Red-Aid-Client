@@ -114,7 +114,7 @@ const Navbar = () => {
                                 </summary>
                                 <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
                                     <li><NavLink to={'/add-volunteer'}><span className="text-base font-medium ">Add Volunteer Post</span></NavLink></li>
-                                    <li><NavLink to={'/my-post'}><span className="text-base font-medium ">My List</span></NavLink></li>
+                                    <li><NavLink to={'/my-post'}><span className="text-base font-medium ">Manage My Post</span></NavLink></li>
                                 </ul>
                             </details>
                         </div>

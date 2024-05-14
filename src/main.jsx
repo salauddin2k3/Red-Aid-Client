@@ -15,13 +15,13 @@ import AuthProvider from './Providers/AuthProvider';
 import Details from './Components/Details';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from './Components/PrivateRoute';
-import UpdateSpot from './Components/UpdateSpot';
 import DetailsInfo from './Components/DetailsInfo';
 import CountryDetails from './Components/CountryDetails';
 import NeedVolunteer from './Components/NeedVolunteer';
 import AddVolunteerPost from './Components/AddVolunteerPost';
 import ManageMyPost from './Components/ManageMyPost';
 import BeAVolunteer from './Components/BeAVolunteer';
+import UpdatePost from './Components/UpdatePost';
 
 const router = createBrowserRouter([
   {
@@ -42,8 +42,8 @@ const router = createBrowserRouter([
         element: <PrivateRoute><ManageMyPost></ManageMyPost></PrivateRoute>,
       },
       {
-        path: "/update-spot/:id",
-        element: <UpdateSpot></UpdateSpot>
+        path: "/update-post/:id",
+        element: <UpdatePost></UpdatePost>
       },
       {
         path: "/login",

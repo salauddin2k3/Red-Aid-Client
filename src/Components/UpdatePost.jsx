@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { BsPatchPlusFill } from "react-icons/bs";
+import { MdBrowserUpdated } from "react-icons/md";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
 
-const UpdateSpot = () => {
+const UpdatePost = () => {
 
     const { id } = useParams();
 
@@ -17,7 +17,7 @@ const UpdateSpot = () => {
     // console.log(userData);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/singleInfo/${id}`)
+        fetch(`http://localhost:5000/singlePost/${id}`)
             .then(res => res.json())
             .then(data => {
                 setUserData(data);
@@ -27,17 +27,16 @@ const UpdateSpot = () => {
     const handleUpdate = e => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
-        const spotName = form.get('spot-name');
+        const postTitle = form.get('post-title');
         const location = form.get('location');
-        const seasonality = form.get('seasonality');
-        const visitor = form.get('visitor');
-        const country = form.get('country');
-        const cost = form.get('cost');
-        const travelTime = form.get('travel-time');
-        const imageUrl = form.get('image-url');
+        const thumbnail = form.get('thumbnail');
+        const category = form.get('category');
+        const volunteersNeeded = form.get('needed-volunteer');
+        const deadline = form.get('deadline');
         const description = form.get('description');
-        const newInfo = { spotName, location, seasonality, visitor, country, cost, travelTime, imageUrl, description };
-        fetch(`http://localhost:5000/updateInfo/${id}`, {
+        const newInfo = { postTitle, location, thumbnail, category, volunteersNeeded, deadline, description };
+
+        fetch(`http://localhost:5000/updatePost/${id}`, {
             method: "PUT",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(newInfo)
@@ -46,12 +45,12 @@ const UpdateSpot = () => {
             .then(data => {
                 // console.log(data);
                 if (data?.matchedCount > 0) {
-                    // console.log(data);
+                    console.log(data);
                     // alert("data Update")
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: "Data Update Successfully",
+                        title: "Post Update Successfully",
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -64,16 +63,19 @@ const UpdateSpot = () => {
         <div className="">
             <div className="py-10 px-20 border border-gray-200 rounded-xl shadow-lg ">
                 <div className="flex items-center justify-center gap-6">
-                    <div className="text-3xl text-accent"><BsPatchPlusFill /></div>
-                    <h2 className="text-center text-4xl text-accent font-bold">Add Your Favorite Tourist Spot</h2>
+                    <div className="text-3xl text-[#00929E]"><MdBrowserUpdated /></div>
+                    <h2 className="text-center text-4xl text-[#BA006F] font-bold">Update Your Post</h2>
                 </div>
                 <form onSubmit={handleUpdate} action="">
                     <div className="flex gap-10 items-center justify-center mt-12">
+                        <div className="w-full p-4 lg:p-16 bg-[#1313130d] rounded-xl flex justify-center">
+                            <img className="w-fit rounded-xl" src={userData.thumbnail} alt="" />
+                        </div>
                         <div className="w-full">
                             <div>
-                                <h2 className="text-lg font-semibold">Tourists Spot Name</h2>
+                                <h2 className="text-lg font-semibold">Post Title</h2>
                                 <label className="mt-2 input input-bordered flex items-center gap-2">
-                                    <input type="text" defaultValue={userData.spotName} name="spot-name" className="grow" placeholder="Tourists Spot Name" />
+                                    <input type="text" defaultValue={userData.postTitle} name="post-title" className="grow" placeholder="Tourists Spot Name" />
                                 </label>
                             </div>
                             <div className="mt-4">
@@ -83,48 +85,53 @@ const UpdateSpot = () => {
                                 </label>
                             </div>
                             <div className="mt-4">
-                                <h2 className="text-lg font-semibold">Seasonality</h2>
+                                <h2 className="text-lg font-semibold">Deadline</h2>
                                 <label className="mt-2 input input-bordered flex items-center gap-2">
-                                    <input type="text" defaultValue={userData.seasonality} name="seasonality" className="grow" placeholder="Seasonality" />
+                                    <input type="date" defaultValue={userData.deadline} name="deadline" className="grow" placeholder="deadline" />
                                 </label>
                             </div>
                             <div className="mt-4">
-                                <h2 className="text-lg font-semibold">Total Visitors Per Year</h2>
+                                <h2 className="text-lg font-semibold">Organizer Name</h2>
                                 <label className="mt-2 input input-bordered flex items-center gap-2">
-                                    <input type="text" defaultValue={userData.visitor} name="visitor" className="grow" placeholder="Total Visitors Per Year" />
+                                    <input type="text" disabled defaultValue={userData.name} name="or-name" className="grow" placeholder="Or Name" />
                                 </label>
                             </div>
                         </div>
                         <div className="w-full">
                             <div>
-                                <h2 className="text-lg font-semibold">Country</h2>
+                                <h2 className="text-lg font-semibold">Category</h2>
                                 <label className=" mt-2 input input-bordered flex items-center gap-2">
-                                    <select className="w-full text-gray-800 " name="country" id="">
-                                        <option>Bangladesh</option>
-                                        <option>Thailand</option>
-                                        <option>Indonesia</option>
-                                        <option>Malaysia</option>
-                                        <option>Vietnam</option>
-                                        <option>Cambodia</option>
+                                    <select defaultValue={userData.category} className="w-full " name="category" id="">
+                                        {/* <option disabled selected>Select Category</option> */}
+                                        <option>Healthcare</option>
+                                        <option>Education</option>
+                                        <option>Social Service</option>
+                                        <option>Environmental Conservation</option>
+                                        <option>Animal Welfare</option>
+                                        <option>Arts & Culture</option>
+                                        <option>Elderly Care</option>
+                                        <option>Youth Development</option>
+                                        <option>Disaster Relief</option>
+                                        <option>Community Development</option>
                                     </select>
                                 </label>
                             </div>
                             <div className="mt-4">
-                                <h2 className="text-lg font-semibold">Average Cost</h2>
+                                <h2 className="text-lg font-semibold">No. of volunteers needed</h2>
                                 <label className="mt-2 input input-bordered flex items-center gap-2">
-                                    <input type="text" defaultValue={userData.cost} name="cost" className="grow" placeholder="Cost" />
+                                    <input type="text" defaultValue={userData.volunteersNeeded} name="needed-volunteer" className="grow" placeholder="needed-volunteer" />
                                 </label>
                             </div>
                             <div className="mt-4">
-                                <h2 className="text-lg font-semibold">Travel Time</h2>
+                                <h2 className="text-lg font-semibold">Thumbnail Url</h2>
                                 <label className="mt-2 input input-bordered flex items-center gap-2">
-                                    <input type="text" defaultValue={userData.travelTime} name="travel-time" className="grow" placeholder="Travel Time" />
+                                    <input type="text" defaultValue={userData.thumbnail} name="thumbnail" className="grow" placeholder="thumbnail" />
                                 </label>
                             </div>
                             <div className="mt-4">
-                                <h2 className="text-lg font-semibold">Spot Image Url</h2>
+                                <h2 className="text-lg font-semibold">Organizer Email</h2>
                                 <label className="mt-2 input input-bordered flex items-center gap-2">
-                                    <input type="text" defaultValue={userData.imageUrl} name="image-url" className="grow" placeholder="image url" />
+                                    <input type="text" disabled defaultValue={userData.email} name="travel-time" className="grow" placeholder="Travel Time" />
                                 </label>
                             </div>
                         </div>
@@ -136,7 +143,7 @@ const UpdateSpot = () => {
                         </label>
                     </div>
                     <div className="mt-4">
-                        <button className="btn w-full mt-2 btn-accent">Update</button>
+                        <button className="btn w-full mt-2 bg-[#BA006F] text-white">Update</button>
                     </div>
                 </form>
             </div>
@@ -144,4 +151,4 @@ const UpdateSpot = () => {
     );
 };
 
-export default UpdateSpot;
+export default UpdatePost;
