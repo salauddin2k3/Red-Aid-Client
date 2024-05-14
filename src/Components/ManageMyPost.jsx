@@ -55,6 +55,7 @@ const ManageMyPost = () => {
             </div>
             <div>
                 <h2 className="text-5xl font-bold text-center mt-20 text-[#BA006F]">My Volunteer Request Post:</h2>
+                {/* <NoDataLottie></NoDataLottie> */}
                 <div>
                     {/* {
                         anotherInfo
@@ -81,10 +82,14 @@ const ManageMyPost = () => {
                         }
                     </div> */}
                     {
-                        anotherInfo?.map(anotherInfo => <MyVolunteerRequest
+                        anotherInfo.length
+                        ? 
+                        anotherInfo.map(anotherInfo => <MyVolunteerRequest
                             anotherInfo={anotherInfo}
                             key={anotherInfo._id}
                         ></MyVolunteerRequest>)
+                        :
+                        <NoDataLottie></NoDataLottie>
                     }
                 </div>
             </div>
