@@ -1,9 +1,13 @@
+import LottieFAQ from "./LottieFAQ";
 
 
 const Faq = () => {
     return (
         <div className=" mt-20 flex items-center justify-center border border-gray-300 rounded-2xl p-5">
             <section className=" dark:bg-gray-100 dark:text-gray-800 rounded-xl w-full lg:px-20 lg:py-10">
+                <div>
+                    <LottieFAQ></LottieFAQ>
+                </div>
                 <div className=" flex flex-col justify-center px-4 py-8 mx-auto md:p-8">
                     <h2 className="text-2xl font-semibold sm:text-4xl">Frequently Asked Questions</h2>
                     <p className="mt-4 mb-8 dark:text-gray-600">Have questions? <span>{`We've`}</span> got answers! Browse our frequently asked questions to find information about creating an account, finding volunteer opportunities, contacting organizations, tracking volunteer hours, and more. </p>
