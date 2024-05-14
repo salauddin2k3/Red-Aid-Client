@@ -31,7 +31,7 @@ const Navbar = () => {
 
         <li><NavLink to={'/'}><span className=" text-base font-medium">Home</span></NavLink></li>
         <li><NavLink to={'/need-volunteer'}><span className="text-base font-medium ">Need Volunteer</span></NavLink></li>
-        <li><NavLink to={'/update'}><span className="text-base font-medium ">Update Profile</span></NavLink></li>
+        {/* <li><NavLink to={'/update'}><span className="text-base font-medium ">Update Profile</span></NavLink></li> */}
 
     </>
 
