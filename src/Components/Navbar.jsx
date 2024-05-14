@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
+import NavIcon from "../../public/infinity-care.png"
 
 
 const Navbar = () => {
@@ -51,7 +52,7 @@ const Navbar = () => {
                         </div>
                         <NavLink to={'/'}>
                             <div className="flex items-center gap-2">
-                                <img className="w-16" src="/public/infinity-care.png" alt="" />
+                                <img className="w-16" src={NavIcon} alt="" />
                                 <a className="text-lg md:text-2xl lg:text-4xl font-extrabold "><span className="text-[#00929E]">Infinity</span> <span className="text-[#BA006F]">Care</span></a>
                             </div>
                         </NavLink>
