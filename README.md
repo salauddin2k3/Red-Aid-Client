@@ -1,16 +1,17 @@
-# Explore SoutheastAsia
+# Your Gateway to Volunteering
 
-Live Site: [ExploreSoutheastAsia.com](https://example.com)
+Live Site: [Explore Infinity Care](https://infinity-care-a9b7b.web.app/)
 
 ## About
-Explore SoutheastAsia is a website dedicated to showcasing the beauty and wonders of Southeast Asia. From vibrant cities to serene beaches, explore the diverse cultures and landscapes of this enchanting region.
+Infinity Care is a platform dedicated to connecting volunteers with meaningful opportunities to make a difference in their communities. Whether you're passionate about healthcare, education, social service, environmental conservation, or animal welfare, Voluntra has something for you.
 
-## Features
-- **Discover Iconic Destinations**: Explore famous tourist spots like Angkor Wat, Ha Long Bay, and Borobudur Temple.
-- **Plan Your Trip**: Get practical travel information such as average costs, best seasons to visit, and recommended travel durations.
-- **Interactive Maps**: Navigate through Southeast Asia with interactive maps highlighting key attractions and points of interest.
-- **Engaging Content**: Dive deep into the history, culture, and cuisine of Southeast Asian countries through articles, photos, and videos.
-- **Customizable Experience**: Personalize your journey by creating custom itineraries and saving your favorite destinations.
+## Features:
+
+- **Discover Volunteer Opportunities:** Explore a diverse range of volunteer opportunities tailored to your interests and availability.
+- **Easy Sign-Up:** Create your account in minutes and start volunteering with just a few clicks.
+- **Connect with Organizations:** Engage directly with organizations hosting volunteer opportunities to learn more and get involved.
+- **Track Your Impact:** Monitor and track your volunteer hours and impact over time through personalized dashboards.
+- **Community Engagement:** Join a vibrant community of volunteers dedicated to making a difference and sharing their experiences.
 
 ## Technology Stack
 - ReactJS
