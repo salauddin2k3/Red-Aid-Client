@@ -1,9 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import Slider from "./Slider";
-import Contact from "./Contact";
+// import Contact from "./Contact";
 import Faq from "./Faq";
 // import LottieReact from "./LottieReact";
 import Posts from "./Posts";
+import Features from "./Features";
 
 
 const Home = () => {
@@ -14,7 +15,8 @@ const Home = () => {
             {/* <LottieReact></LottieReact> */}
             <Posts></Posts>
             <Faq></Faq>
-            <Contact></Contact>
+            {/* <Contact></Contact> */}
+            <Features></Features>
         </div>
     );
 };
