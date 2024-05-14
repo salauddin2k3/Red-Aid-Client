@@ -23,7 +23,7 @@ const Posts = () => {
 
     return (
         <div className="">
-            <h2 className="text-5xl font-bold text-center mt-20">Volunteer Needs Now:</h2>
+            <h2 className="text-5xl font-bold text-center mt-20 text-[#00929E]">Volunteer Needs Now:</h2>
             <div className="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {
                     info?.map(info => <Post

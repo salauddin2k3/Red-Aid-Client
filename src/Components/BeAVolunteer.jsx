@@ -38,9 +38,9 @@ const BeAVolunteer = () => {
         const orName = postData.name;
         const orEmail = postData.email;
         const suggestion = form.get('suggestion');
-        const volEmail = user?.email;
-        const volName = user?.displayName;
-        const newInfo = { postTitle, location, thumbnail, category, volunteersNeeded, deadline, description, volName, volEmail, orName, orEmail, suggestion };
+        const email = user?.email;
+        const name = user?.displayName;
+        const newInfo = { postTitle, location, thumbnail, category, volunteersNeeded, deadline, description, email, name, orName, orEmail, suggestion };
         console.log(newInfo);
 
 

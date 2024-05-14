@@ -11,7 +11,7 @@ const Post = (info) => {
     return (
         <div className="" data-aos="fade-up" data-aos-duration="3000" >
             <div className='mx-2'>
-                <div className='rounded-xl mt-7 border-[#dddcdc] border p-6 h-full'>
+                <div className='rounded-xl mt-7 border-[#00929E] border p-6 h-full'>
                     <div>
                         <div className='bg-[#F3F3F3] py-7 px-7 rounded-xl'>
                             <div className='flex justify-center items-center'>
@@ -46,8 +46,8 @@ const Post = (info) => {
                             </div>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
                             <div className="mt-5 flex items-center justify-center">
-                                <div>
-                                    <h3 className='text-base font-medium font-work'> <span className="font-bold">Deadline:</span> {info.info.deadline}</h3>
+                                <div className="mt-4 border border-[#BA006F] p-5 rounded-xl">
+                                    <h3 className='text-base font-medium text-[#00929E] font-work'> <span className="font-bold">Deadline:</span> {info.info.deadline}</h3>
                                 </div>
                             </div>
                             <div className=' mt-6 border-b-2 border-dashed'></div>

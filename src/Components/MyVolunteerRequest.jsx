@@ -1,20 +1,19 @@
-
 import { FaLocationDot } from "react-icons/fa6";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+// import { Link } from "react-router-dom";
 
 
-const MyListInfo = (info) => {
+const MyVolunteerRequest = (anotherInfo) => {
 
+    console.log(anotherInfo.anotherInfo);
 
     const navigateLocation = useLocation();
     const navigate = useNavigate();
 
 
-
-
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/delete/${id}`, {
+        fetch(`http://localhost:5000/anotherDelete/${id}`, {
             method: "DELETE",
         })
             .then(res => res.json())
@@ -29,12 +28,12 @@ const MyListInfo = (info) => {
                         showCancelButton: true,
                         confirmButtonColor: "#3085d6",
                         cancelButtonColor: "#d33",
-                        confirmButtonText: "Yes, delete it!"
+                        confirmButtonText: "Yes, cancel it!"
                     }).then((result) => {
                         if (result.isConfirmed) {
                             Swal.fire({
-                                title: "Deleted!",
-                                text: "Your file has been deleted.",
+                                title: "Canceled!",
+                                text: "Your file has been canceled.",
                                 icon: "success"
                             });
                         }
@@ -53,7 +52,7 @@ const MyListInfo = (info) => {
                     <div>
                         <div className='bg-[#F3F3F3] py-7 px-7 rounded-xl'>
                             <div className='flex justify-center items-center'>
-                                <img className='rounded-xl' src={info.info.thumbnail} alt="" />
+                                <img className='rounded-xl' src={anotherInfo.anotherInfo.thumbnail} alt="" />
                             </div>
                         </div>
                         <div>
@@ -64,8 +63,8 @@ const MyListInfo = (info) => {
                                     } */}
                             </div>
                             <div className='mt-5'>
-                                <h2 className='text-2xl font-bold '>{info.info.postTitle}</h2>
-                                <p className='mt-6 text-base font-medium  font-work'>{info.info.description}</p>
+                                <h2 className='text-2xl font-bold '>{anotherInfo.anotherInfo.postTitle}</h2>
+                                <p className='mt-6 text-base font-medium  font-work'>{anotherInfo.anotherInfo.description}</p>
                             </div>
                         </div>
                         <div className=''>
@@ -73,13 +72,13 @@ const MyListInfo = (info) => {
                             <div className="mt-5 flex items-center justify-between">
 
                                 <div className="flex items-center mt-4 justify-center gap-20">
-                                    <h2 className="font-bold  font-work">Category: <span className="font-normal">{info.info.category}</span></h2>
+                                    <h2 className="font-bold  font-work">Category: <span className="font-normal">{anotherInfo.anotherInfo.category}</span></h2>
                                     <div className="flex items-center gap-3">
                                         <div>
                                             <FaLocationDot className="text-xl " />
                                         </div>
                                         <div>
-                                            <h3 className='font-bold  font-work'>{info.info.location}</h3>
+                                            <h3 className='font-bold  font-work'>{anotherInfo.anotherInfo.location}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -87,14 +86,13 @@ const MyListInfo = (info) => {
                             <div className=' mt-6 border-b-2 border-dashed'></div>
                             <div className="mt-5 flex items-center justify-between">
                                 <div className="w-full border-2 flex flex-col items-center border-[#BA006F] rounded-lg p-9">
-                                    <p className="text-lg font-bold  font-work">Deadline : {info.info.deadline} </p>
-                                    <p className="mt-4 text-lg font-bold  font-work">Needed Volunteers:  ({info.info.volunteersNeeded}) </p>
+                                    <p className="text-lg font-bold  font-work">Deadline : {anotherInfo.anotherInfo.deadline} </p>
+                                    <p className="mt-4 text-lg font-bold  font-work">Needed Volunteers:  ({anotherInfo.anotherInfo.volunteersNeeded}) </p>
                                 </div>
                             </div>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
                             <div className="mt-5 flex items-center justify-around">
-                                <Link to={`/update-post/${info.info._id}`}><button className="btn text-white bg-[#00929E] px-16">Update</button></Link>
-                                <button onClick={() => handleDelete(info.info._id)} className="btn text-white bg-[#BA006F] px-16">Delete</button>
+                                <button onClick={() => handleDelete(anotherInfo.anotherInfo._id)} className="btn w-full text-white bg-[#BA006F] px-16">Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -104,4 +102,4 @@ const MyListInfo = (info) => {
     );
 };
 
-export default MyListInfo;
+export default MyVolunteerRequest;
