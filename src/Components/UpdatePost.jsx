@@ -3,6 +3,9 @@ import { Helmet } from "react-helmet-async";
 import { MdBrowserUpdated } from "react-icons/md";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import Datepicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { FaCalendarAlt } from "react-icons/fa";
 
 
 
@@ -14,6 +17,8 @@ const UpdatePost = () => {
     const navigate = useNavigate();
 
     const [userData, setUserData] = useState([]);
+
+    const [selectedDate, setDate] = useState(null);
 
     // console.log(userData);
 
@@ -88,8 +93,9 @@ const UpdatePost = () => {
                             </div>
                             <div className="mt-4">
                                 <h2 className="text-lg font-semibold">Deadline</h2>
-                                <label className="mt-2 input input-bordered flex items-center gap-2">
-                                    <input type="date" defaultValue={userData.deadline} name="deadline" className="grow" placeholder="deadline" />
+                                <label className="mt-2 input input-bordered flex justify-between items-center gap-2">
+                                    <Datepicker name="deadline" dateFormat="dd/MM/yyyy" placeholderText="Select Date" selected={selectedDate} onChange={date => setDate(date)}></Datepicker>
+                                    <FaCalendarAlt />
                                 </label>
                             </div>
                             <div className="mt-4">

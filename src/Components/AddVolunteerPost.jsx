@@ -1,9 +1,12 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { BsFilePost } from "react-icons/bs";
 import { AuthContext } from "../Providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import Datepicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { FaCalendarAlt } from "react-icons/fa";
 
 
 const AddVolunteerPost = () => {
@@ -12,6 +15,8 @@ const AddVolunteerPost = () => {
 
     const navigateLocation = useLocation();
     const navigate = useNavigate();
+
+    const [selectedDate, setDate] = useState(null);
 
 
     const handleAddSpot = (e) => {
@@ -110,8 +115,12 @@ const AddVolunteerPost = () => {
                             </div>
                             <div className="mt-4">
                                 <h2 className="text-lg font-semibold text-[#00929E]">Deadline</h2>
-                                <label className="mt-2 input input-bordered flex items-center gap-2">
+                                {/* <label className="mt-2 input input-bordered flex items-center gap-2">
                                     <input type="date" name="deadline" className="grow" placeholder="Deadline" />
+                                </label> */}
+                                <label className="mt-2 input input-bordered flex justify-between items-center gap-2">
+                                    <Datepicker name="deadline" dateFormat="dd/MM/yyyy" placeholderText="Select Date" selected={selectedDate} onChange={date => setDate(date)}></Datepicker>
+                                    <FaCalendarAlt />
                                 </label>
                             </div>
                         </div>
