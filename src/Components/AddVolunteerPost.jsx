@@ -33,7 +33,7 @@ const AddVolunteerPost = () => {
         const name = user?.displayName;
         const newInfo = { postTitle, location, thumbnail, category, volunteersNeeded, deadline, description, email, name };
 
-        fetch("http://localhost:5000/addPost", {
+        fetch("https://infinity-care.vercel.app/addPost", {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(newInfo)

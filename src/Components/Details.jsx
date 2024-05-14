@@ -14,7 +14,7 @@ const Details = () => {
     // console.log(userData);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/singlePost/${id}`)
+        fetch(`https://infinity-care.vercel.app/singlePost/${id}`)
             .then(res => res.json())
             .then(data => {
                 setUserData(data);

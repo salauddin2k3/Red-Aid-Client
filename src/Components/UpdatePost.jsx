@@ -23,7 +23,7 @@ const UpdatePost = () => {
     // console.log(userData);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/singlePost/${id}`)
+        fetch(`https://infinity-care.vercel.app/singlePost/${id}`)
             .then(res => res.json())
             .then(data => {
                 setUserData(data);
@@ -42,7 +42,7 @@ const UpdatePost = () => {
         const description = form.get('description');
         const newInfo = { postTitle, location, thumbnail, category, volunteersNeeded, deadline, description };
 
-        fetch(`http://localhost:5000/updatePost/${id}`, {
+        fetch(`https://infinity-care.vercel.app/updatePost/${id}`, {
             method: "PUT",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(newInfo)

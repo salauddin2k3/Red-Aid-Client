@@ -14,7 +14,7 @@ const MyListInfo = (info) => {
 
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/delete/${id}`, {
+        fetch(`https://infinity-care.vercel.app/delete/${id}`, {
             method: "DELETE",
         })
             .then(res => res.json())

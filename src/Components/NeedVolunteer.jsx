@@ -17,7 +17,7 @@ const NeedVolunteer = () => {
     // console.log(search);
 
     useEffect(() => {
-        fetch('http://localhost:5000/allPost')
+        fetch('https://infinity-care.vercel.app/allPost')
             .then(res => res.json())
             .then((data) => {
                 // console.log(data);

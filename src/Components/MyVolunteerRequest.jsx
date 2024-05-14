@@ -14,7 +14,7 @@ const MyVolunteerRequest = (anotherInfo) => {
 
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/anotherDelete/${id}`, {
+        fetch(`https://infinity-care.vercel.app/anotherDelete/${id}`, {
             method: "DELETE",
         })
             .then(res => res.json())

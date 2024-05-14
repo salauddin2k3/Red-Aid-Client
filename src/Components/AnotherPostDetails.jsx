@@ -16,7 +16,7 @@ const AnotherPostDetails = () => {
     // console.log(userData);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/anotherSingleInfo/${id}`)
+        fetch(`https://infinity-care.vercel.app/anotherSingleInfo/${id}`)
             .then(res => res.json())
             .then(data => {
                 setUserData(data);

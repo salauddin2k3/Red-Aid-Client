@@ -21,7 +21,7 @@ const ManageMyPost = () => {
     // console.log(user);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myInfo/${user?.email}`)
+        fetch(`https://infinity-care.vercel.app/myInfo/${user?.email}`)
             .then(res => res.json())
             .then((data) => {
                 // console.log(data);
@@ -30,7 +30,7 @@ const ManageMyPost = () => {
     }, [user]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myAnotherInfo/${user?.email}`)
+        fetch(`https://infinity-care.vercel.app/myAnotherInfo/${user?.email}`)
             .then(res => res.json())
             .then((data) => {
                 console.log(data);

@@ -19,7 +19,7 @@ const BeAVolunteer = () => {
     const [postData, setPostData] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/singlePost/${id}`)
+        fetch(`https://infinity-care.vercel.app/singlePost/${id}`)
             .then(res => res.json())
             .then(data => {
                 setPostData(data);
@@ -45,7 +45,7 @@ const BeAVolunteer = () => {
         console.log(newInfo);
 
 
-        fetch("http://localhost:5000/addNewPost", {
+        fetch("https://infinity-care.vercel.app/addNewPost", {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(newInfo)
@@ -66,7 +66,7 @@ const BeAVolunteer = () => {
                 }
             });
 
-        fetch(`http://localhost:5000/updateINCPost/${id}`, {
+        fetch(`https://infinity-care.vercel.app/updateINCPost/${id}`, {
             method: "PUT",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify()
