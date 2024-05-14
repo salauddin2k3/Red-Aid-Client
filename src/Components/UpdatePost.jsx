@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { MdBrowserUpdated } from "react-icons/md";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -61,6 +62,7 @@ const UpdatePost = () => {
 
     return (
         <div className="">
+            <Helmet><title>Update Post</title></Helmet>
             <div className="py-10 px-20 border border-gray-200 rounded-xl shadow-lg ">
                 <div className="flex items-center justify-center gap-6">
                     <div className="text-3xl text-[#00929E]"><MdBrowserUpdated /></div>

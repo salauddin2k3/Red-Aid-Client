@@ -3,6 +3,7 @@ import { BsFilePost } from "react-icons/bs";
 import { AuthContext } from "../Providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const AddVolunteerPost = () => {
@@ -52,6 +53,7 @@ const AddVolunteerPost = () => {
 
     return (
         <div className="">
+            <Helmet><title>Add Volunteer Post</title></Helmet>
             <div className="py-10 px-20 border border-gray-200 rounded-xl shadow-lg ">
                 <div className="flex items-center justify-center gap-6">
                     <div className="text-3xl text-[#00929E]"><BsFilePost /></div>

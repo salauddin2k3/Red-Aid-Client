@@ -41,7 +41,7 @@ const ManageMyPost = () => {
 
     return (
         <div className="">
-            <Helmet><title>My List</title></Helmet>
+            <Helmet><title>Manage Post</title></Helmet>
             <div>
                 <h2 className="text-5xl font-bold text-center mt-20 text-[#00929E]">My Need Volunteer Post:</h2>
                 <div className="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -56,7 +56,7 @@ const ManageMyPost = () => {
             <div>
                 <h2 className="text-5xl font-bold text-center mt-20 text-[#BA006F]">My Volunteer Request Post:</h2>
                 <div>
-                    {
+                    {/* {
                         anotherInfo
                             ?
                             <div>
@@ -70,6 +70,22 @@ const ManageMyPost = () => {
                                         key={anotherInfo._id}
                                     ></MyVolunteerRequest>)
                                 }
+                            </div>
+                    } */}
+                    {
+                        anotherInfo
+                            ?
+                            <div className="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {
+                                    anotherInfo?.map(anotherInfo => <MyVolunteerRequest
+                                        anotherInfo={anotherInfo}
+                                        key={anotherInfo._id}
+                                    ></MyVolunteerRequest>)
+                                }
+                            </div>
+                            :
+                            <div>
+                                <NoDataLottie></NoDataLottie>
                             </div>
                     }
                 </div>

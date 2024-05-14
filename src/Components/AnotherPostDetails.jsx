@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 
-const CountryDetails = () => {
+const AnotherPostDetails = () => {
 
     const { id } = useParams();
 
@@ -30,4 +30,4 @@ const CountryDetails = () => {
     );
 };
 
-export default CountryDetails;
+export default AnotherPostDetails;

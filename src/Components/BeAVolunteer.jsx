@@ -3,6 +3,7 @@ import { MdVolunteerActivism } from "react-icons/md";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const BeAVolunteer = () => {
@@ -69,6 +70,7 @@ const BeAVolunteer = () => {
 
     return (
         <div className="">
+            <Helmet><title>Be A Volunteer</title></Helmet>
             <div className="py-10 px-20 border border-gray-200 rounded-xl shadow-lg ">
                 <div className="flex items-center justify-center gap-6">
                     <div className="text-3xl text-[#00929E]"><MdVolunteerActivism /></div>

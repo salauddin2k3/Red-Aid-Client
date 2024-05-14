@@ -16,12 +16,12 @@ import Details from './Components/Details';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from './Components/PrivateRoute';
 import DetailsInfo from './Components/DetailsInfo';
-import CountryDetails from './Components/CountryDetails';
 import NeedVolunteer from './Components/NeedVolunteer';
 import AddVolunteerPost from './Components/AddVolunteerPost';
 import ManageMyPost from './Components/ManageMyPost';
 import BeAVolunteer from './Components/BeAVolunteer';
 import UpdatePost from './Components/UpdatePost';
+import AnotherPostDetails from './Components/AnotherPostDetails';
 
 const router = createBrowserRouter([
   {
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/country-details',
-        element: <CountryDetails></CountryDetails>
+        element: <AnotherPostDetails></AnotherPostDetails>
       }
     ]
   },

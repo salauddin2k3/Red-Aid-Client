@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { FaLocationDot } from "react-icons/fa6";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -47,6 +48,7 @@ const MyVolunteerRequest = (anotherInfo) => {
 
     return (
         <div className="" data-aos="fade-up" data-aos-duration="3000" >
+            <Helmet><title>Volunteer Request</title></Helmet>
             <div className='mx-2'>
                 <div className='rounded-xl mt-7 border-[#00929E] border p-6 h-full'>
                     <div>

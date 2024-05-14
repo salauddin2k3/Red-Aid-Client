@@ -83,7 +83,7 @@ const Reg = () => {
 
     return (
         <div className="mt-32 flex items-center justify-center ">
-            <Helmet><title>Registration with Prime Residence</title></Helmet>
+            <Helmet><title>Registration with Infinity Care</title></Helmet>
             <div>
                 <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800">
                     <h1 className="text-2xl font-bold text-center">Registration</h1>
