@@ -26,6 +26,11 @@ import Reg from './Components/Pages/UserSection/Reg'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Funding from './Components/Pages/Funding/Funding';
 import Dashboard from './Components/Dashboard/Dashboard';
+import AllUser from './Components/Dashboard/AdminDashboard/AllUser';
+import AllDonationRequest from './Components/Dashboard/AdminDashboard/AllDonationRequest';
+import ContentManagement from './Components/Dashboard/AdminDashboard/ContentManagement';
+import MyDonationRequest from './Components/Dashboard/DonorDashboard/MyDonationRequest';
+import CreateDonationRequest from './Components/Dashboard/DonorDashboard/CreateDonationRequest';
 
 const queryClient = new QueryClient();
 
@@ -94,11 +99,33 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: "/dashboard",
+    path: "dashboard",
     element: <Dashboard></Dashboard>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
+      // Admin routes --------------------------
+      {
+        path: "all-user",
+        element: <AllUser></AllUser>
+      },
+      {
+        path: "all-donation-request",
+        element: <AllDonationRequest></AllDonationRequest>
+      },
+      {
+        path: "content-management",
+        element: <ContentManagement></ContentManagement>
+      },
 
+      // Donor Routes ----------------------------------
+      {
+        path: "my-donation-request",
+        element: <MyDonationRequest></MyDonationRequest>
+      },
+      {
+        path: "create-donation-request",
+        element: <CreateDonationRequest></CreateDonationRequest>
+      },
     ]
   },
 ]);

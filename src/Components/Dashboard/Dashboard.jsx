@@ -1,9 +1,20 @@
+import { Outlet } from "react-router-dom";
+import DashboardNav from "./DashboardNav";
+
 
 
 const Dashboard = () => {
     return (
-        <div>
-            <h2>Admin</h2>
+        <div className="flex">
+            {/* Dashboard Sidebar */}
+            <div className="w-72 h-screen hidden lg:block fixed bg-gray-700 pt-10 pl-5">
+                <DashboardNav></DashboardNav>
+            </div>
+
+            {/* Dashboard content */}
+            <div className="pt-10 lg:ml-96">
+                <Outlet></Outlet>
+            </div>
         </div>
     );
 };
