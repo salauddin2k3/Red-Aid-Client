@@ -39,7 +39,7 @@ const Posts = () => {
                     }
                 </div>
                 <div className="mt-10 mb-8 text-center">
-                    <Link to='/need-volunteer'><h2><button className="btn bg-[#BA006F] text-white w-1/3">See All Post<span><FaLongArrowAltRight /></span></button></h2></Link>
+                    <Link to='/donation-requests'><h2><button className="btn bg-[#BA006F] text-white w-1/3">See All Post<span><FaLongArrowAltRight /></span></button></h2></Link>
                 </div>
             </div>
         </div>

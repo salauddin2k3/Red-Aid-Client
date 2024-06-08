@@ -5,23 +5,29 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Home from './Components/Home';
 import Root from './Components/Root';
 import ErrorPage from './Components/ErrorPage';
 import Updates from './Components/Updates';
-import Login from './Components/Login';
-import Reg from './Components/Reg';
 import AuthProvider from './Providers/AuthProvider';
 import Details from './Components/Details';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from './Components/PrivateRoute';
 import DetailsInfo from './Components/DetailsInfo';
-import NeedVolunteer from './Components/NeedVolunteer';
 import AddVolunteerPost from './Components/AddVolunteerPost';
 import ManageMyPost from './Components/ManageMyPost';
 import BeAVolunteer from './Components/BeAVolunteer';
 import UpdatePost from './Components/UpdatePost';
 import AnotherPostDetails from './Components/AnotherPostDetails';
+import Home from './Components/Pages/HomePage/Home';
+import DonationRequest from './Components/Pages/DonationRequests/DonationRequest';
+import BLog from './Components/Pages/Blog/BLog';
+import Login from './Components/Pages/UserSection/Login'
+import Reg from './Components/Pages/UserSection/Reg'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Funding from './Components/Pages/Funding/Funding';
+import Dashboard from './Components/Dashboard/Dashboard';
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -66,8 +72,8 @@ const router = createBrowserRouter([
         element: <DetailsInfo></DetailsInfo>
       },
       {
-        path: '/need-volunteer',
-        element: <NeedVolunteer></NeedVolunteer>
+        path: '/donation-requests',
+        element: <DonationRequest></DonationRequest>
       },
       {
         path: '/add-volunteer',
@@ -76,7 +82,23 @@ const router = createBrowserRouter([
       {
         path: '/country-details',
         element: <AnotherPostDetails></AnotherPostDetails>
-      }
+      },
+      {
+        path: '/blog',
+        element: <BLog></BLog>
+      },
+      {
+        path: '/funding',
+        element: <Funding></Funding>
+      },
+    ]
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+
     ]
   },
 ]);
@@ -84,7 +106,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <HelmetProvider><RouterProvider router={router} /></HelmetProvider>
+      <QueryClientProvider client={queryClient}><HelmetProvider><RouterProvider router={router} /></HelmetProvider></QueryClientProvider>
     </AuthProvider>
   </React.StrictMode>,
 )
