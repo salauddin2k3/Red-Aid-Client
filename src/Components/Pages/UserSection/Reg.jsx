@@ -6,6 +6,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 
 const Reg = () => {
@@ -35,16 +36,6 @@ const Reg = () => {
     });
 
 
-
-
-    // const [district, setDistrict] = useState([]);
-    // console.log(district);
-
-    // useEffect(()  => {
-    //     fetch("../../../../public/districts.json")
-    //     .then(res => res.json())
-    //     .then(data => setDistrict(data))
-    // },[]);
 
 
     const [regError, setRegError] = useState('');
@@ -100,21 +91,37 @@ const Reg = () => {
         createUser(email, password, name, url, bloodGroup, upazilas, district)
             .then(result => {
 
-                console.log(result.user)
-                setRegSuccess('User Created Successfully');
-                // alert('User Created Successfully');
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "User Created Successfully",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+                // Create user entry in the database
+                const userInfo = {
+                    name: name,
+                    email: email,
+                    url: url,
+                    bloodGroup: bloodGroup,
+                    upazilas: upazilas,
+                    district: district
+                }
 
-                UserUpdateProfile(name, url);
+                axios.post('http://localhost:5000/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            setRegSuccess('User Created Successfully');
+                            // alert('User Created Successfully');
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "User Created Successfully",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
 
-                // Navigate
-                navigate(location?.state ? location.state : '/');
+                            UserUpdateProfile(name, url);
+
+                            // Navigate
+                            navigate(location?.state ? location.state : '/');
+                        }
+                    })
+
+                console.log(result.user);
             })
             .catch(error => {
                 console.error(error);

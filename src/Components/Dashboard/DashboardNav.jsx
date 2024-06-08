@@ -3,9 +3,9 @@ import { NavLink } from "react-router-dom";
 
 const DashboardNav = () => {
 
-    const isAdmin = false;
+    const isAdmin = true;
     const isDonor = false;
-    const isVolunteer = true;
+    const isVolunteer = false;
 
     return (
         <div className="h-screen ">
