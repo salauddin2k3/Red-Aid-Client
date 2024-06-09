@@ -12,29 +12,32 @@ const DashboardNav = () => {
             {
                 isAdmin &&
                 <div>
-                    <NavLink to="/dashboard/all-user"><a className=" text-white hover:bg-gray-900 py-2 px-4 block">Users</a></NavLink>
-                    <NavLink to="/dashboard/all-donation-request"><a className=" text-white hover:bg-gray-900 py-2 px-4 block">Donation Requests</a></NavLink>
-                    <NavLink to="/dashboard/content-management"><a className=" text-white hover:bg-gray-900 py-2 px-4 block">Content Management</a></NavLink>
+                    <NavLink to="/dashboard"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">Dashboard</li></NavLink>
+                    <NavLink to="/dashboard/all-user"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">Users</li></NavLink>
+                    <NavLink to="/dashboard/all-donation-request"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">Donation Requests</li></NavLink>
+                    <NavLink to="/dashboard/content-management"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">Content Management</li></NavLink>
                     <hr className="m-4" />
-                    <NavLink to="/"><a className=" text-white hover:bg-gray-900 py-2 px-4 block italic">Back to home</a></NavLink>
+                    <NavLink to="/"><li className=" text-white hover:bg-gray-900 py-2 px-4 block italic">Back to home</li></NavLink>
                 </div>
             }
             {
                 isDonor &&
                 <div>
-                    <NavLink to="/dashboard/my-donation-request"><a className=" text-white hover:bg-gray-900 py-2 px-4 block">My Donation Request</a></NavLink>
-                    <NavLink to="/dashboard/create-donation-request"><a className=" text-white hover:bg-gray-900 py-2 px-4 block">Create Donation Request</a></NavLink>
+                    <NavLink to="/dashboard"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">Dashboard</li></NavLink>
+                    <NavLink to="/dashboard/my-donation-request"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">My Donation Request</li></NavLink>
+                    <NavLink to="/dashboard/create-donation-request"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">Create Donation Request</li></NavLink>
                     <hr className="m-4" />
-                    <NavLink to="/"><a className=" text-white hover:bg-gray-900 py-2 px-4 block italic">Back to home</a></NavLink>
+                    <NavLink to="/"><li className=" text-white hover:bg-gray-900 py-2 px-4 block italic">Back to home</li></NavLink>
                 </div>
             }
             {
                 isVolunteer &&
                 <div>
-                    <NavLink to="/dashboard/all-donation-request"><a className=" text-white hover:bg-gray-900 py-2 px-4 block">Donation Requests</a></NavLink>
-                    <NavLink to="/dashboard/content-management"><a className=" text-white hover:bg-gray-900 py-2 px-4 block">Content Management</a></NavLink>
+                    <NavLink to="/dashboard"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">Dashboard</li></NavLink>
+                    <NavLink to="/dashboard/all-donation-request"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">Donation Requests</li></NavLink>
+                    <NavLink to="/dashboard/content-management"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">Content Management</li></NavLink>
                     <hr className="m-4" />
-                    <NavLink to="/"><a className=" text-white hover:bg-gray-900 py-2 px-4 block italic">Back to home</a></NavLink>
+                    <NavLink to="/"><li className=" text-white hover:bg-gray-900 py-2 px-4 block italic">Back to home</li></NavLink>
                 </div>
             }
         </div>

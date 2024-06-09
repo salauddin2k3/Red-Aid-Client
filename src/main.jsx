@@ -31,6 +31,7 @@ import AllDonationRequest from './Components/Dashboard/AdminDashboard/AllDonatio
 import ContentManagement from './Components/Dashboard/AdminDashboard/ContentManagement';
 import MyDonationRequest from './Components/Dashboard/DonorDashboard/MyDonationRequest';
 import CreateDonationRequest from './Components/Dashboard/DonorDashboard/CreateDonationRequest';
+import DashboardHome from './Components/Dashboard/DonorDashboard/DashboardHome';
 
 const queryClient = new QueryClient();
 
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
+      {
+        path: "/dashboard",
+        element: <DashboardHome></DashboardHome>
+      },
       // Admin routes --------------------------
       {
         path: "all-user",
