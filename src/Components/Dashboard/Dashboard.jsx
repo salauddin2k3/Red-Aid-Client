@@ -12,7 +12,7 @@ const Dashboard = () => {
             </div>
 
             {/* Dashboard content */}
-            <div className="pt-10 lg:ml-96">
+            <div className="pt-10 lg:ml-72 w-full mt-8">
                 <Outlet></Outlet>
             </div>
         </div>

@@ -19,7 +19,7 @@ const DashboardHome = () => {
     });
 
     return (
-        <div className="lg:px-96">
+        <div className="">
             <div>
                 <h2 className="p-3 font-bold text-center text-4xl">Hello, <span className="text-[#27796f]">{users[0]?.name}</span> ! Welcome to <span><span className="text-red-700">Red</span>Aid</span> <br /> <span className="text-[#BA006F] text-3xl"><Typewriter
                     words={[`where every donor is a hero.`, `where your gift can save lives.`, `where giving is life-saving.`, `where each donor is a life-saver.`, `where your contribution counts.`, `where every drop is precious.`, `where your support means the world.`, `where every donation makes a difference.`, `where generosity meets gratitude.`, `where heroes give blood.`, `where your kindness creates hope.`]}

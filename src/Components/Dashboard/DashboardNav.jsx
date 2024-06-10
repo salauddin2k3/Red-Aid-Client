@@ -8,7 +8,7 @@ const DashboardNav = () => {
     const isVolunteer = false;
 
     return (
-        <div className="h-screen ">
+        <div className="h-screen">
             {
                 isAdmin &&
                 <div>
