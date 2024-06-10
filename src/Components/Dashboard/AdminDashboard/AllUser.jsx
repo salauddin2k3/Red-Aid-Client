@@ -25,13 +25,13 @@ const AllUser = () => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: `${user.name}is an Admin Now!`,
+                        title: `${user.name} is an Admin Now!`,
                         showConfirmButton: false,
                         timer: 2500
                     });
                 }
             })
-    }
+    };
 
     const handleMakeVolunteer = user => {
         console.log(user)
@@ -43,13 +43,13 @@ const AllUser = () => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: `${user.name}is an Volunteer Now!`,
+                        title: `${user.name} is a Volunteer Now!`,
                         showConfirmButton: false,
                         timer: 2500
                     });
                 }
             })
-    }
+    };
 
     const handleMakeDonor = user => {
         console.log(user)
@@ -61,13 +61,13 @@ const AllUser = () => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: `${user.name}is an Donor Now!`,
+                        title: `${user.name} is a Donor Now!`,
                         showConfirmButton: false,
                         timer: 2500
                     });
                 }
             })
-    }
+    };
 
     const handleRoleChange = (e, user) => {
         const role = e.target.value;
@@ -80,6 +80,43 @@ const AllUser = () => {
             handleMakeDonor(user);
             // console.log("Make Donor functionality not implemented yet");
         }
+    };
+
+    // Status Changing Section
+    const handleMakeBlock = user => {
+        console.log(user)
+        axios.patch(`http://localhost:5000/users/block/${user._id}`)
+            .then(res => {
+                console.log(res.data);
+                refetch();
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `${user.name} is Blocked!`,
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                }
+            })
+    };
+
+    const handleMakeActive = user => {
+        console.log(user)
+        axios.patch(`http://localhost:5000/users/active/${user._id}`)
+            .then(res => {
+                console.log(res.data);
+                refetch();
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `${user.name} is Active!`,
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                }
+            })
     };
 
     return (
@@ -96,7 +133,7 @@ const AllUser = () => {
                             <th>Email</th>
                             <th>Status</th>
                             <th>Role</th>
-                            {/* <th>Change Role</th> */}
+                            <th>Change Role</th>
                             <th>Change Status</th>
                         </tr>
                     </thead>
@@ -123,7 +160,7 @@ const AllUser = () => {
                                     <td>
                                         <div className="badge badge-ghost badge-sm p-3">{user.email}</div>
                                     </td>
-                                    <td>Active</td>
+                                    <td>{user?.status}</td>
                                     <td>{user?.role}</td>
                                     <td>
                                         <select
@@ -139,8 +176,12 @@ const AllUser = () => {
                                         </select>
                                     </td>
                                     <th>
-                                        {/* <span onClick={() => handleMakeAdmin(user)} className="btn text-sm btn-sm lg:text-base text-white font-medium bg-[#BA006F] ">Make Admin</span> */}
-                                        {/* <span className="btn text-sm btn-sm lg:text-base text-white font-medium bg-[#27796f] ">Active</span> */}
+                                        {
+                                            user?.status === "Active" && <span onClick={() => handleMakeBlock(user)} className="btn text-sm btn-sm lg:text-base text-white font-medium bg-[#BA006F] ">Block</span>
+                                        }
+                                        {
+                                            user?.status === "Block" && <span onClick={() => handleMakeActive(user)} className="btn text-sm btn-sm lg:text-base text-white font-medium bg-[#27796f] ">Active</span>
+                                        }
                                     </th>
                                 </tr>
                             )

@@ -129,7 +129,7 @@ const router = createBrowserRouter([
       },
       {
         path: "create-donation-request",
-        element: <CreateDonationRequest></CreateDonationRequest>
+        element: <PrivateRoute><CreateDonationRequest></CreateDonationRequest></PrivateRoute>
       },
     ]
   },

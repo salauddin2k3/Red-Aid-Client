@@ -25,7 +25,7 @@ const Reg = () => {
     });
 
 
-    // District---------------------------
+    // Upazilas---------------------------
 
     const { data: upazilas } = useQuery({
         queryKey: ['upazilas'],
@@ -63,6 +63,8 @@ const Reg = () => {
         const url = form.get('url');
         const password = form.get('password');
         const confirmPassword = form.get('confirmPassword');
+        const role = "donor";
+        const status = "Active";
         // console.log(email, password, name, url, bloodGroup, upazilas, district);
 
         // Reset Error & Success
@@ -88,7 +90,7 @@ const Reg = () => {
 
 
         // Create User
-        createUser(email, password, name, url, bloodGroup, upazilas, district)
+        createUser(email, password, name, url, bloodGroup, upazilas, district, role, status)
             .then(result => {
 
                 // Create user entry in the database
@@ -98,7 +100,9 @@ const Reg = () => {
                     url: url,
                     bloodGroup: bloodGroup,
                     upazilas: upazilas,
-                    district: district
+                    district: district,
+                    role: role,
+                    status: status
                 }
 
                 axios.post('http://localhost:5000/users', userInfo)
@@ -162,10 +166,10 @@ const Reg = () => {
                                     </label>
                                 </div>
                                 <div className="space-y-1 text-sm pb-2">
-                                    <label htmlFor="email" className="block dark:text-gray-600 pb-1">District</label>
+                                    <label htmlFor="email" className="block dark:text-gray-600 pb-1">Upazila</label>
                                     <label className="">
-                                        <select defaultValue={"upazilas"} className="w-full px-3 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600 border border-gray-300" name="upazilas" >
-                                            <option disabled value="upazilas">Select Your Upazilas</option>
+                                        <select defaultValue={"upazila"} className="w-full px-3 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600 border border-gray-300" name="upazilas" >
+                                            <option disabled value="upazila">Select Your Upazila</option>
                                             {
                                                 upazilas?.map(districtData => <option key={districtData.id}>{districtData.name}</option>)
                                             }
