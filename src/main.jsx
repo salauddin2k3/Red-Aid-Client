@@ -32,6 +32,7 @@ import ContentManagement from './Components/Dashboard/AdminDashboard/ContentMana
 import MyDonationRequest from './Components/Dashboard/DonorDashboard/MyDonationRequest';
 import CreateDonationRequest from './Components/Dashboard/DonorDashboard/CreateDonationRequest';
 import DashboardHome from './Components/Dashboard/DonorDashboard/DashboardHome';
+import RequestCardUpdate from './Components/Dashboard/DonorDashboard/RequestCardUpdate';
 
 const queryClient = new QueryClient();
 
@@ -130,6 +131,10 @@ const router = createBrowserRouter([
       {
         path: "create-donation-request",
         element: <PrivateRoute><CreateDonationRequest></CreateDonationRequest></PrivateRoute>
+      },
+      {
+        path: "request-card-update/:id",
+        element: <RequestCardUpdate></RequestCardUpdate>
       },
     ]
   },

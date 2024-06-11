@@ -14,8 +14,6 @@ const CreateDonationRequest = () => {
 
     const { user } = useContext(AuthContext);
 
-    console.log(user.displayName);
-
     const navigateLocation = useLocation();
     const navigate = useNavigate();
 
@@ -29,7 +27,7 @@ const CreateDonationRequest = () => {
         }
     });
 
-    console.log(users[0]);
+    // console.log(users[0]);
 
 
     // District---------------------------
@@ -53,7 +51,7 @@ const CreateDonationRequest = () => {
         }
     });
 
-    const handleAddSpot = (e) => {
+    const handleAddRequest = (e) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
         const recipientName = form.get('recipient-name');
@@ -64,10 +62,10 @@ const CreateDonationRequest = () => {
         const upazilas = form.get('upazilas');
         const donationTime = form.get('donation-time');
         const fullAddress = form.get('full-address');
-        const requesterEmail = user?.email;
-        const requesterName = user?.displayName;
+        const email = user?.email;
+        const name = user?.displayName;
         const status = "pending";
-        const newInfo = { recipientName, district, donationDate, message, hospitalName, upazilas, donationTime, fullAddress, requesterEmail, requesterName, status };
+        const newInfo = { recipientName, district, donationDate, message, hospitalName, upazilas, donationTime, fullAddress, email, name, status };
 
         fetch("http://localhost:5000/donationRequest", {
             method: "POST",
@@ -104,7 +102,7 @@ const CreateDonationRequest = () => {
                             <div className="text-3xl text-[#00929E]"><BsFilePost /></div>
                             <h2 className="text-center text-4xl text-[#BA006F] font-bold">Create Donation Request</h2>
                         </div>
-                        <form onSubmit={handleAddSpot} action="">
+                        <form onSubmit={handleAddRequest} action="">
                             <div className="flex gap-10 items-center justify-center mt-12">
                                 <div className="w-full">
                                     <div>
@@ -116,13 +114,13 @@ const CreateDonationRequest = () => {
                                     <div className="mt-4">
                                         <h2 className="text-lg font-semibold text-[#00929E]">Recipient Name</h2>
                                         <label className="mt-2 input input-bordered flex items-center gap-2">
-                                            <input type="text" name="recipient-name" className="grow" placeholder="Recipient Name" />
+                                            <input required type="text" name="recipient-name" className="grow" placeholder="Recipient Name" />
                                         </label>
                                     </div>
                                     <div className="mt-4">
                                         <h2 className="text-lg text-[#00929E] font-semibold">Recipient District</h2>
                                         <label className=" mt-2 input input-bordered flex items-center gap-2">
-                                            <select defaultValue="district" className="w-full " name="district" id="">
+                                            <select required defaultValue="district" className="w-full " name="district" id="">
                                                 <option disabled value="district">Select Your District</option>
                                                 {
                                                     district?.map(districtData => <option key={districtData.id}>{districtData.name}</option>)
@@ -136,14 +134,14 @@ const CreateDonationRequest = () => {
                                     <input type="date" name="deadline" className="grow" placeholder="Deadline" />
                                 </label> */}
                                         <label className="mt-2 input input-bordered flex justify-between items-center gap-2">
-                                            <Datepicker name="donation-date" dateFormat="dd/MM/yyyy" placeholderText="Select Date" selected={selectedDate} onChange={date => setDate(date)}></Datepicker>
+                                            <Datepicker required name="donation-date" dateFormat="dd/MM/yyyy" placeholderText="Select Date" selected={selectedDate} onChange={date => setDate(date)}></Datepicker>
                                             <FaCalendarAlt />
                                         </label>
                                     </div>
                                     <div className="mt-4">
                                         <h2 className="text-lg font-semibold text-[#00929E]">Request Message</h2>
                                         <label className="mt-2 input input-bordered flex items-center gap-2">
-                                            <input type="text" name="message" className="grow" placeholder="Why need blood?" />
+                                            <input required type="text" name="message" className="grow" placeholder="Why need blood?" />
                                         </label>
                                     </div>
                                 </div>
@@ -152,19 +150,19 @@ const CreateDonationRequest = () => {
                                     <div>
                                         <h2 className="text-lg font-semibold text-[#00929E]">Requester Email</h2>
                                         <label className="mt-2 input input-bordered flex items-center gap-2">
-                                            <input disabled defaultValue={user.email} type="text" name="post-title" className="grow" />
+                                            <input required disabled defaultValue={user.email} type="text" name="post-title" className="grow" />
                                         </label>
                                     </div>
                                     <div className="mt-4">
                                         <h2 className="text-lg font-semibold text-[#00929E]">Hospital Name</h2>
                                         <label className="mt-2 input input-bordered flex items-center gap-2">
-                                            <input type="text" name="hospital-name" className="grow" placeholder="Hospital Name" />
+                                            <input required type="text" name="hospital-name" className="grow" placeholder="Hospital Name" />
                                         </label>
                                     </div>
                                     <div className="mt-4">
                                         <h2 className="text-lg text-[#00929E] font-semibold">Recipient Upazila</h2>
                                         <label className=" mt-2 input input-bordered flex items-center gap-2">
-                                            <select defaultValue="upazilas" className="w-full " name="upazilas" id="">
+                                            <select required defaultValue="upazilas" className="w-full " name="upazilas" id="">
                                                 <option disabled value="upazilas">Select Your Upazilas</option>
                                                 {
                                                     upazilas?.map(districtData => <option key={districtData.id}>{districtData.name}</option>)
@@ -176,13 +174,13 @@ const CreateDonationRequest = () => {
                                     <div className="mt-4">
                                         <h2 className="text-lg font-semibold text-[#00929E]">Donation Time</h2>
                                         <label className="mt-2 input input-bordered flex items-center gap-2">
-                                            <input type="time" name="donation-time" className="grow" placeholder="Donation Time" />
+                                            <input required type="time" name="donation-time" className="grow" placeholder="Donation Time" />
                                         </label>
                                     </div>
                                     <div className="mt-4">
                                         <h2 className="text-lg font-semibold text-[#00929E]">Full Address Line</h2>
                                         <label className="mt-2 input input-bordered flex items-center gap-2">
-                                            <input type="text" name="full-address" className="grow" placeholder="like: Zahir Raihan Rd, Dhaka" />
+                                            <input required type="text" name="full-address" className="grow" placeholder="like: Zahir Raihan Rd, Dhaka" />
                                         </label>
                                     </div>
                                 </div>
