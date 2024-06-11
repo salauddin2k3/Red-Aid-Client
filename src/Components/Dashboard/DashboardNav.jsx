@@ -32,7 +32,7 @@ const DashboardNav = () => {
                 <div>
                     <NavLink to="/dashboard"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">Dashboard</li></NavLink>
                     <NavLink to="/dashboard/all-user"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">Users</li></NavLink>
-                    <NavLink to="/dashboard/all-donation-request"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">Donation Requests</li></NavLink>
+                    <NavLink to="/dashboard/all-donation-request"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">All Donation Requests</li></NavLink>
                     <NavLink to="/dashboard/content-management"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">Content Management</li></NavLink>
                     <hr className="m-4" />
                     <NavLink to="/"><li className=" text-white hover:bg-gray-900 py-2 px-4 block italic">Back to home</li></NavLink>

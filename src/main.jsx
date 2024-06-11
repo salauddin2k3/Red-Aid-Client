@@ -33,6 +33,8 @@ import MyDonationRequest from './Components/Dashboard/DonorDashboard/MyDonationR
 import CreateDonationRequest from './Components/Dashboard/DonorDashboard/CreateDonationRequest';
 import DashboardHome from './Components/Dashboard/DonorDashboard/DashboardHome';
 import RequestCardUpdate from './Components/Dashboard/DonorDashboard/RequestCardUpdate';
+import ReqCardDetails from './Components/Dashboard/DonorDashboard/ReqCardDetails';
+import DonationCardDetails from './Components/Pages/DonationRequests/DonationCardDetails';
 
 const queryClient = new QueryClient();
 
@@ -98,6 +100,10 @@ const router = createBrowserRouter([
         path: '/funding',
         element: <Funding></Funding>
       },
+      {
+        path: '/donationDetails/:id',
+        element: <PrivateRoute><DonationCardDetails></DonationCardDetails></PrivateRoute>,
+      },
     ]
   },
   {
@@ -135,6 +141,10 @@ const router = createBrowserRouter([
       {
         path: "request-card-update/:id",
         element: <RequestCardUpdate></RequestCardUpdate>
+      },
+      {
+        path: 'reqDetails/:id',
+        element: <PrivateRoute><ReqCardDetails></ReqCardDetails></PrivateRoute>,
       },
     ]
   },

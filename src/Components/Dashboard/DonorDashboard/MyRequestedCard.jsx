@@ -86,7 +86,7 @@ const MyRequestedCard = (info) => {
                                 <div className="w-full"><Link><button onClick={() => handleDelete(info.info._id)} className="btn bg-[#BA006F] text-white mt-6 w-full">Delete</button></Link></div>
                             </div>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
-                            <Link><button className="btn bg-[#00929E] text-white mt-6 w-full">View Details</button></Link>
+                            <Link to={`/dashboard/reqDetails/${info.info._id}`}><button className="btn bg-[#00929E] text-white mt-6 w-full">View Details</button></Link>
                         </div>
                     </div>
                 </div>

@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Datepicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { FaCalendarAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 
 const RequestCardUpdate = () => {
@@ -36,17 +37,20 @@ const RequestCardUpdate = () => {
 
     const { id } = useParams();
 
-    const [userData, setUserData] = useState([]);
+    // const [userData, setUserData] = useState([]);
 
     // console.log(userData);
 
-    useEffect(() => {
-        fetch(`http://localhost:5000/singleRequest/${id}`)
-            .then(res => res.json())
-            .then(data => {
-                setUserData(data);
-            })
-    }, [id]);
+
+
+
+    const { data: userData = [] } = useQuery({
+        queryKey: ['userData'],
+        queryFn: async () => {
+            const res = await axios.get(`http://localhost:5000/singleRequest/${id}`);
+            return res.data;
+        }
+    });
 
     const navigateLocation = useLocation();
     const navigate = useNavigate();

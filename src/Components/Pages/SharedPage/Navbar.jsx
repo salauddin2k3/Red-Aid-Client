@@ -31,7 +31,7 @@ const Navbar = () => {
     const navLinks = <>
 
         <li><NavLink to={'/'}><span className=" text-base font-medium">Home</span></NavLink></li>
-        <li><NavLink to={'/donation-requests'}><span className="text-base font-medium ">Donation Requests</span></NavLink></li>
+        <li><NavLink to={'/donation-requests'}><span className="text-base font-medium ">Blood Donation Requests</span></NavLink></li>
         <li><NavLink to={'/blog'}><span className="text-base font-medium ">Blog</span></NavLink></li>
         <li>{user && <NavLink to={'/funding'}><span className="text-base font-medium ">Funding Links</span></NavLink>}</li>
         {/* <li><NavLink to={'/update'}><span className="text-base font-medium ">Update Profile</span></NavLink></li> */}
