@@ -14,7 +14,7 @@ const ManageMyPost = () => {
 
     const [info, setInfo] = useState([]);
     const [anotherInfo, setAnotherInfo] = useState([]);
-    console.log(anotherInfo);
+    // console.log(anotherInfo);
 
     // console.log(info)
 
@@ -33,7 +33,7 @@ const ManageMyPost = () => {
         fetch(`https://infinity-care.vercel.app/myAnotherInfo/${user?.email}`)
             .then(res => res.json())
             .then((data) => {
-                console.log(data);
+                // console.log(data);
                 setAnotherInfo(data);
             });
     }, [user]);

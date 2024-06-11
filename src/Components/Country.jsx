@@ -6,7 +6,7 @@ import {  } from "../Providers/AuthProvider";
 
 const Country = (info) => {
 
-    console.log(info.info.country);
+    // console.log(info.info.country);
 
 
     return (

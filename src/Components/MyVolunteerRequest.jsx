@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 const MyVolunteerRequest = (anotherInfo) => {
 
-    console.log(anotherInfo.anotherInfo);
+    // console.log(anotherInfo.anotherInfo);
 
     const navigateLocation = useLocation();
     const navigate = useNavigate();

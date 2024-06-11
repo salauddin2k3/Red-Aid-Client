@@ -74,7 +74,7 @@ const CreateDonationRequest = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data?.insertedId) {
                     Swal.fire({
                         position: "top-end",
@@ -134,7 +134,7 @@ const CreateDonationRequest = () => {
                                     <input type="date" name="deadline" className="grow" placeholder="Deadline" />
                                 </label> */}
                                         <label className="mt-2 input input-bordered flex justify-between items-center gap-2">
-                                            <Datepicker required name="donation-date" dateFormat="dd/MM/yyyy" placeholderText="Select Date" selected={selectedDate} onChange={date => setDate(date)}></Datepicker>
+                                            <Datepicker required name="donation-date" dateFormat="MM/dd/yyyy" placeholderText="Select Date" selected={selectedDate} onChange={date => setDate(date)}></Datepicker>
                                             <FaCalendarAlt />
                                         </label>
                                     </div>

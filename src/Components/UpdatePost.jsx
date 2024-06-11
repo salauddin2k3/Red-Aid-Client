@@ -51,7 +51,7 @@ const UpdatePost = () => {
             .then(data => {
                 // console.log(data);
                 if (data?.matchedCount > 0) {
-                    console.log(data);
+                    // console.log(data);
                     // alert("data Update")
                     Swal.fire({
                         position: "top-end",

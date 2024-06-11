@@ -13,13 +13,13 @@ const AllUser = () => {
         }
     });
 
-    console.log(users);
+    // console.log(users);
 
     const handleMakeAdmin = user => {
-        console.log(user)
+        // console.log(user)
         axios.patch(`http://localhost:5000/users/admin/${user._id}`)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 refetch();
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
@@ -34,10 +34,10 @@ const AllUser = () => {
     };
 
     const handleMakeVolunteer = user => {
-        console.log(user)
+        // console.log(user)
         axios.patch(`http://localhost:5000/users/volunteer/${user._id}`)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 refetch();
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
@@ -52,10 +52,10 @@ const AllUser = () => {
     };
 
     const handleMakeDonor = user => {
-        console.log(user)
+        // console.log(user)
         axios.patch(`http://localhost:5000/users/donor/${user._id}`)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 refetch();
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
@@ -75,7 +75,7 @@ const AllUser = () => {
             handleMakeAdmin(user);
         } else if (role === "volunteer") {
             handleMakeVolunteer(user);
-            console.log("Make Volunteer functionality not implemented yet");
+            // console.log("Make Volunteer functionality not implemented yet");
         } else if (role === "donor") {
             handleMakeDonor(user);
             // console.log("Make Donor functionality not implemented yet");
@@ -84,10 +84,10 @@ const AllUser = () => {
 
     // Status Changing Section
     const handleMakeBlock = user => {
-        console.log(user)
+        // console.log(user)
         axios.patch(`http://localhost:5000/users/block/${user._id}`)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 refetch();
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
@@ -102,10 +102,10 @@ const AllUser = () => {
     };
 
     const handleMakeActive = user => {
-        console.log(user)
+        // console.log(user)
         axios.patch(`http://localhost:5000/users/active/${user._id}`)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 refetch();
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({

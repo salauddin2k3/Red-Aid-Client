@@ -11,7 +11,7 @@ const AnotherPostDetails = () => {
 
     const [userData, setUserData] = useState([]);
 
-    console.log(userData);
+    // console.log(userData);
 
     // console.log(userData);
 

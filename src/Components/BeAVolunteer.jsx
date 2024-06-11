@@ -42,7 +42,7 @@ const BeAVolunteer = () => {
         const email = user?.email;
         const name = user?.displayName;
         const newInfo = { postTitle, location, thumbnail, category, volunteersNeeded, deadline, description, email, name, orName, orEmail, suggestion };
-        console.log(newInfo);
+        // console.log(newInfo);
 
 
         fetch("https://infinity-care.vercel.app/addNewPost", {
@@ -52,7 +52,7 @@ const BeAVolunteer = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data?.insertedId) {
                     // alert("data added");
                     Swal.fire({
@@ -75,7 +75,7 @@ const BeAVolunteer = () => {
             .then(data => {
                 // console.log(data);
                 if (data?.matchedCount > 0) {
-                    console.log(data);
+                    // console.log(data);
                     // alert("data Update")
                     Swal.fire({
                         position: "top-end",

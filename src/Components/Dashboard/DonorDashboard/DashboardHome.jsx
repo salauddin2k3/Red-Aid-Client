@@ -1,14 +1,23 @@
 
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import MyRequestedCard from "./MyRequestedCard";
 
 
 const DashboardHome = () => {
 
     const { user } = useContext(AuthContext);
+
+    // const { data: requestData = [] } = useQuery({
+    //     queryKey: ['requestData'],
+    //     queryFn: async () => {
+    //         const res = await axios.get(`http://localhost:5000/allRequest/${user?.email}`);
+    //         return res.data;
+    //     }
+    // });
 
     const { data: users = [] } = useQuery({
         queryKey: ['users'],
@@ -17,6 +26,21 @@ const DashboardHome = () => {
             return res.data;
         }
     });
+
+    const [info, setInfo] = useState([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/allRequest/${user?.email}`)
+            .then(res => res.json())
+            .then((data) => {
+                // console.log(data);
+                const filter = data.slice(0, 3);
+                // console.log(filter);
+                setInfo(filter);
+            });
+    }, [user]);
+
+    console.log(info[0]);
 
     return (
         <div className="">
@@ -31,6 +55,22 @@ const DashboardHome = () => {
                     delaySpeed={1000}
                 ></Typewriter></span></h2>
             </div>
+            {
+                info[0] &&
+                <div className="">
+                    <h2 className="text-5xl font-bold text-center mt-20 text-[#00929E]">My Donation Request:</h2>
+                    <div className="border border-gray-200 px-5 mt-8 rounded-lg">
+                        <div className="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {
+                                info?.map(info => <MyRequestedCard
+                                    info={info}
+                                    key={info._id}
+                                ></MyRequestedCard>)
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     );
 };

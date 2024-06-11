@@ -13,7 +13,7 @@ const NoDataLottie = () => {
                 ></Lottie>
             </div>
             <div className="mt-12">
-                <Link to='/donation-requests'><button className="btn text-white mb-4 px-16 bg-[#00929E]">Be a Volunteer</button></Link>
+                <Link to='/donation-requests'><button className="btn text-white mb-4 px-16 bg-[#00929E]">Create a Donation Request</button></Link>
             </div>
         </div>
     );

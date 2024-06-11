@@ -2,7 +2,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
-const MyRequestedCard = (requestData) => {
+const MyRequestedCard = (info) => {
+
+    // console.log(info.info)
 
     const navigateLocation = useLocation();
     const navigate = useNavigate();
@@ -35,13 +37,13 @@ const MyRequestedCard = (requestData) => {
                         }
                     });
 
-                    navigate(navigateLocation?.state ? navigateLocation.state : '/dashboard');
+                    navigate(navigateLocation?.state ? navigateLocation.state : '/');
                 }
             });
     }
 
 
-    console.log(requestData.requestData);
+    // console.log(info.info);
 
 
 
@@ -52,20 +54,20 @@ const MyRequestedCard = (requestData) => {
                     <div>
                         <div className='bg-[#F3F3F3] py-7 px-7 rounded-xl'>
                             <div className='flex justify-center items-center'>
-                                <h2 className="text-4xl font-bold">{requestData.requestData.recipientName}</h2>
+                                <h2 className="text-4xl font-bold">{info.info.recipientName}</h2>
                             </div>
                         </div>
                         <div>
                             <div className='mt-6 flex flex-col md:flex-col lg:flex-row justify-evenly lg:items-center gap-4'>
-                                <h2 className="font-medium"><span className="font-bold">District:</span> {requestData.requestData.district}</h2>
-                                <h2 className="font-medium"><span className="font-bold">Upazila:</span> {requestData.requestData.upazilas}</h2>
+                                <h2 className="font-medium"><span className="font-bold">District:</span> {info.info.district}</h2>
+                                <h2 className="font-medium"><span className="font-bold">Upazila:</span> {info.info.upazilas}</h2>
                             </div>
                         </div>
                         <div className=''>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
                             <div className='mt-6 flex flex-col md:flex-col lg:flex-row justify-between lg:items-center gap-4'>
-                                <h2 className="font-medium"><span className="font-bold">Donation Date:</span> {requestData.requestData.donationDate}</h2>
-                                <h2 className="font-medium"><span className="font-bold">Donation Time:</span> {requestData.requestData.donationTime}</h2>
+                                <h2 className="font-medium"><span className="font-bold">Donation Date:</span> {info.info.donationDate}</h2>
+                                <h2 className="font-medium"><span className="font-bold">Donation Time:</span> {info.info.donationTime}</h2>
                             </div>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
                             <div className='mt-6 flex flex-col md:flex-col lg:flex-col justify-between lg:items-center gap-4'>
@@ -75,13 +77,13 @@ const MyRequestedCard = (requestData) => {
                             <div className=' mt-6 border-b-2 border-dashed'></div>
                             <div className="mt-5 flex items-center justify-center">
                                 <div className="mt-4 border border-[#BA006F] p-5 rounded-xl">
-                                    <h3 className='text-base font-medium text-[#00929E] font-work'> <span className="font-bold">Status:</span> {requestData.requestData.status}</h3>
+                                    <h3 className='text-base font-medium text-[#00929E] font-work'> <span className="font-bold">Status:</span> {info.info.status}</h3>
                                 </div>
                             </div>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
                             <div className="flex justify-center gap-5">
-                                <div className="w-full"><Link to={`/dashboard/request-card-update/${requestData.requestData._id}`}><button className="btn bg-[#BA006F] text-white mt-6 w-full">Edit</button></Link></div>
-                                <div className="w-full"><Link><button onClick={() => handleDelete(requestData.requestData._id)} className="btn bg-[#BA006F] text-white mt-6 w-full">Delete</button></Link></div>
+                                <div className="w-full"><Link to={`/dashboard/request-card-update/${info.info._id}`}><button className="btn bg-[#BA006F] text-white mt-6 w-full">Edit</button></Link></div>
+                                <div className="w-full"><Link><button onClick={() => handleDelete(info.info._id)} className="btn bg-[#BA006F] text-white mt-6 w-full">Delete</button></Link></div>
                             </div>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
                             <Link><button className="btn bg-[#00929E] text-white mt-6 w-full">View Details</button></Link>

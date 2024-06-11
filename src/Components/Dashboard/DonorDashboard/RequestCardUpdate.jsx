@@ -38,7 +38,7 @@ const RequestCardUpdate = () => {
 
     const [userData, setUserData] = useState([]);
 
-    console.log(userData);
+    // console.log(userData);
 
     useEffect(() => {
         fetch(`http://localhost:5000/singleRequest/${id}`)
@@ -73,7 +73,7 @@ const RequestCardUpdate = () => {
             .then(data => {
                 // console.log(data);
                 if (data?.matchedCount > 0) {
-                    console.log(data);
+                    // console.log(data);
                     // alert("data Update")
                     Swal.fire({
                         position: "top-end",
@@ -129,7 +129,7 @@ const RequestCardUpdate = () => {
                                     <input type="date" name="deadline" className="grow" placeholder="Deadline" />
                                 </label> */}
                                     <label defaultValue={userData.donationDate} className="mt-2 input input-bordered flex justify-between items-center gap-2">
-                                        <Datepicker required name="donation-date" dateFormat="dd/MM/yyyy" placeholderText={userData.donationDate} selected={selectedDate} onChange={date => setDate(date)}></Datepicker>
+                                        <Datepicker required name="donation-date" dadateFormat="MM/dd/yyyy" placeholderText={userData.donationDate} selected={selectedDate} onChange={date => setDate(date)}></Datepicker>
                                         <FaCalendarAlt />
                                     </label>
                                 </div>
