@@ -7,7 +7,7 @@ const BLog = () => {
     const { data: posts = [], isLoading } = useQuery({
         queryKey: ['posts'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/allBlog/sorted`);
+            const res = await axios.get(`https://red-aid.vercel.app/allBlog/sorted`);
             return res.data;
         }
     });

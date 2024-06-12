@@ -22,7 +22,7 @@ const CreateDonationRequest = () => {
     const { data: users = [] } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/users/${user?.email}`);
+            const res = await axios.get(`https://red-aid.vercel.app/users/${user?.email}`);
             return res.data;
         }
     });
@@ -67,7 +67,7 @@ const CreateDonationRequest = () => {
         const status = "pending";
         const newInfo = { recipientName, district, donationDate, message, hospitalName, upazilas, donationTime, fullAddress, email, name, status };
 
-        fetch("http://localhost:5000/donationRequest", {
+        fetch("https://red-aid.vercel.app/donationRequest", {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(newInfo)

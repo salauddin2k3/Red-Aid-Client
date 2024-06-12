@@ -47,7 +47,7 @@ const RequestCardUpdate = () => {
     const { data: userData = [] } = useQuery({
         queryKey: ['userData'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/singleRequest/${id}`);
+            const res = await axios.get(`https://red-aid.vercel.app/singleRequest/${id}`);
             return res.data;
         }
     });
@@ -68,7 +68,7 @@ const RequestCardUpdate = () => {
         const fullAddress = form.get('full-address');
         const newInfo = { recipientName, district, donationDate, message, hospitalName, upazilas, donationTime, fullAddress};
 
-        fetch(`http://localhost:5000/updateRequest/${id}`, {
+        fetch(`https://red-aid.vercel.app/updateRequest/${id}`, {
             method: "PUT",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(newInfo)

@@ -19,7 +19,7 @@ const UserProfile = () => {
     useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/users/${user?.email}`);
+            const res = await axios.get(`https://red-aid.vercel.app/users/${user?.email}`);
             const userData = res.data[0];
             setFormData(userData); // Set form data with fetched user data
             return res.data;
@@ -41,7 +41,7 @@ const UserProfile = () => {
     const handleSave = async () => {
         // Add logic to save updated data to the database here
         try {
-            const response = await axios.put(`http://localhost:5000/users/update/${user?.email}`, formData);
+            const response = await axios.put(`https://red-aid.vercel.app/users/update/${user?.email}`, formData);
             // console.log("Data saved successfully", response.data);
             if (response.data?.matchedCount > 0) {
                 // console.log(data);

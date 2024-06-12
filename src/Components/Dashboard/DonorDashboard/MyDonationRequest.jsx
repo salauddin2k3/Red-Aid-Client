@@ -12,7 +12,7 @@ const MyDonationRequest = () => {
     // const [info, setInfo] = useState([]);
 
     // useEffect(() => {
-    //     fetch(`http://localhost:5000/allRequest/${user?.email}`)
+    //     fetch(`https://red-aid.vercel.app/allRequest/${user?.email}`)
     //         .then(res => res.json())
     //         .then((data) => {
     //             // console.log(data);
@@ -25,7 +25,7 @@ const MyDonationRequest = () => {
     const { data: info = []} = useQuery({
         queryKey: ['info'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/allRequest/${user?.email}`);
+            const res = await axios.get(`https://red-aid.vercel.app/allRequest/${user?.email}`);
             return res.data;
         }
     });

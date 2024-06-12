@@ -31,7 +31,7 @@ const BLogPost = ({ post }) => {
     const { data: users = [], isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/users/${user?.email}`);
+            const res = await axios.get(`https://red-aid.vercel.app/users/${user?.email}`);
             return res.data;
         }
     });
@@ -44,7 +44,7 @@ const BLogPost = ({ post }) => {
 
     const handleMakePublished = user => {
         // console.log(user)
-        axios.patch(`http://localhost:5000/status/published/${user._id}`)
+        axios.patch(`https://red-aid.vercel.app/status/published/${user._id}`)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
@@ -73,7 +73,7 @@ const BLogPost = ({ post }) => {
 
     const handleMakeDraft = user => {
         // console.log(user)
-        axios.patch(`http://localhost:5000/status/draft/${user._id}`)
+        axios.patch(`https://red-aid.vercel.app/status/draft/${user._id}`)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
@@ -102,7 +102,7 @@ const BLogPost = ({ post }) => {
 
 
     const handleBlogDelete = (id) => {
-        fetch(`http://localhost:5000/blog/delete/${id}`, {
+        fetch(`https://red-aid.vercel.app/blog/delete/${id}`, {
             method: "DELETE",
         })
             .then(res => res.json())

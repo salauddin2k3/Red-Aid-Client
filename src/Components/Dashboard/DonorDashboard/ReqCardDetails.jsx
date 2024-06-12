@@ -13,7 +13,7 @@ const ReqCardDetails = () => {
     const { data: userData = [], refetch } = useQuery({
         queryKey: ['userData'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/singleRequest/${id}`);
+            const res = await axios.get(`https://red-aid.vercel.app/singleRequest/${id}`);
             return res.data;
         }
     });
@@ -22,7 +22,7 @@ const ReqCardDetails = () => {
 
     const handleMakeInprogress = user => {
         // console.log(user)
-        axios.patch(`http://localhost:5000/status/inprogress/${user._id}`)
+        axios.patch(`https://red-aid.vercel.app/status/inprogress/${user._id}`)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({

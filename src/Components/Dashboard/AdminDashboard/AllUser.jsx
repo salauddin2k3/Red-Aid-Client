@@ -8,7 +8,7 @@ const AllUser = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/users');
+            const res = await axios.get('https://red-aid.vercel.app/users');
             return res.data;
         }
     });
@@ -17,7 +17,7 @@ const AllUser = () => {
 
     const handleMakeAdmin = user => {
         // console.log(user)
-        axios.patch(`http://localhost:5000/users/admin/${user._id}`)
+        axios.patch(`https://red-aid.vercel.app/users/admin/${user._id}`)
             .then(res => {
                 // console.log(res.data);
                 refetch();
@@ -35,7 +35,7 @@ const AllUser = () => {
 
     const handleMakeVolunteer = user => {
         // console.log(user)
-        axios.patch(`http://localhost:5000/users/volunteer/${user._id}`)
+        axios.patch(`https://red-aid.vercel.app/users/volunteer/${user._id}`)
             .then(res => {
                 // console.log(res.data);
                 refetch();
@@ -53,7 +53,7 @@ const AllUser = () => {
 
     const handleMakeDonor = user => {
         // console.log(user)
-        axios.patch(`http://localhost:5000/users/donor/${user._id}`)
+        axios.patch(`https://red-aid.vercel.app/users/donor/${user._id}`)
             .then(res => {
                 // console.log(res.data);
                 refetch();
@@ -85,7 +85,7 @@ const AllUser = () => {
     // Status Changing Section
     const handleMakeBlock = user => {
         // console.log(user)
-        axios.patch(`http://localhost:5000/users/block/${user._id}`)
+        axios.patch(`https://red-aid.vercel.app/users/block/${user._id}`)
             .then(res => {
                 // console.log(res.data);
                 refetch();
@@ -103,7 +103,7 @@ const AllUser = () => {
 
     const handleMakeActive = user => {
         // console.log(user)
-        axios.patch(`http://localhost:5000/users/active/${user._id}`)
+        axios.patch(`https://red-aid.vercel.app/users/active/${user._id}`)
             .then(res => {
                 // console.log(res.data);
                 refetch();

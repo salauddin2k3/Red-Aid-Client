@@ -17,7 +17,7 @@ const DashboardHome = () => {
     // const { data: requestData = [] } = useQuery({
     //     queryKey: ['requestData'],
     //     queryFn: async () => {
-    //         const res = await axios.get(`http://localhost:5000/allRequest/${user?.email}`);
+    //         const res = await axios.get(`https://red-aid.vercel.app/allRequest/${user?.email}`);
     //         return res.data;
     //     }
     // });
@@ -25,7 +25,7 @@ const DashboardHome = () => {
     const { data: info = [] } = useQuery({
         queryKey: ['info'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/allRequest/${user?.email}`);
+            const res = await axios.get(`https://red-aid.vercel.app/allRequest/${user?.email}`);
             const result = res.data;
             const filter = result.slice(0, 3);
             return filter;
@@ -35,7 +35,7 @@ const DashboardHome = () => {
     const { data: users = [], isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/users/${user?.email}`);
+            const res = await axios.get(`https://red-aid.vercel.app/users/${user?.email}`);
             return res.data;
         }
     });
@@ -44,7 +44,7 @@ const DashboardHome = () => {
         return <div>Loading.........</div>
     }
 
-    console.log(users[0].role);
+    // console.log(users[0].role);
 
     return (
         <div className="mb-36">

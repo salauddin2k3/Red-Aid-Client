@@ -10,7 +10,7 @@ const DonationRequest = () => {
     const { data: info = [] } = useQuery({
         queryKey: ['info'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/sorted/allRequest`);
+            const res = await axios.get(`https://red-aid.vercel.app/sorted/allRequest`);
             return res.data;
         }
     });

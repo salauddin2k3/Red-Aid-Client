@@ -12,7 +12,7 @@ const ContentManagement = () => {
     const { data: posts = [], isLoading, error } = useQuery({
         queryKey: ['posts', filter],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/allBLogPost`);
+            const res = await axios.get(`https://red-aid.vercel.app/allBLogPost`);
             if (filter === 'All') return res.data;
             return res.data.filter(post => post.status === filter.toLowerCase());
         }

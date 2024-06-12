@@ -40,7 +40,7 @@ const AddBlog = () => {
             };
 
             // Send the blog post to the server
-            const res = await fetch("http://localhost:5000/blogPost", {
+            const res = await fetch("https://red-aid.vercel.app/blogPost", {
                 method: "POST",
                 headers: { "Content-type": "application/json" },
                 body: JSON.stringify(newInfo)

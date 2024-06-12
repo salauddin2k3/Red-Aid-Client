@@ -20,7 +20,7 @@ const MyRequestedCard = (info) => {
     // const { refetch } = useQuery({
     //     queryKey: ['userData'],
     //     queryFn: async () => {
-    //         const res = await axios.get(`http://localhost:5000/singleRequest/${id}`);
+    //         const res = await axios.get(`https://red-aid.vercel.app/singleRequest/${id}`);
     //         return res.data;
     //     },
     //     enabled: false // This will disable the automatic fetch
@@ -29,7 +29,7 @@ const MyRequestedCard = (info) => {
     const { data: users = [] } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/users/${user?.email}`);
+            const res = await axios.get(`https://red-aid.vercel.app/users/${user?.email}`);
             return res.data;
         }
     });
@@ -38,7 +38,7 @@ const MyRequestedCard = (info) => {
 
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/delete/${id}`, {
+        fetch(`https://red-aid.vercel.app/delete/${id}`, {
             method: "DELETE",
         })
             .then(res => res.json())
@@ -71,7 +71,7 @@ const MyRequestedCard = (info) => {
 
     const handleMakeDone = user => {
         // console.log(user)
-        axios.patch(`http://localhost:5000/status/done/${user._id}`)
+        axios.patch(`https://red-aid.vercel.app/status/done/${user._id}`)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
@@ -101,7 +101,7 @@ const MyRequestedCard = (info) => {
 
     const handleMakeCancel = user => {
         // console.log(user)
-        axios.patch(`http://localhost:5000/status/cancel/${user._id}`)
+        axios.patch(`https://red-aid.vercel.app/status/cancel/${user._id}`)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({

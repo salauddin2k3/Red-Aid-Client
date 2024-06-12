@@ -37,6 +37,7 @@ import ReqCardDetails from './Components/Dashboard/DonorDashboard/ReqCardDetails
 import DonationCardDetails from './Components/Pages/DonationRequests/DonationCardDetails';
 import UserProfile from './Components/Dashboard/UserProfile';
 import AddBlog from './Components/Dashboard/AdminDashboard/AddBlog';
+import SearchPage from './Components/Pages/HomePage/Banner/SearchPage';
 
 const queryClient = new QueryClient();
 
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "/reg",
         element: <Reg></Reg>
+      },
+      {
+        path: "/search-page",
+        element: <SearchPage></SearchPage>
       },
       {
         path: '/details/:id',
@@ -118,16 +123,16 @@ const router = createBrowserRouter([
         element: <PrivateRoute><DashboardHome></DashboardHome></PrivateRoute>
       },
       {
-        path: "user-profile",
+        path: "profile",
         element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
       },
       // Admin routes --------------------------
       {
-        path: "all-user",
+        path: "all-users",
         element: <PrivateRoute><AllUser></AllUser></PrivateRoute>
       },
       {
-        path: "all-donation-request",
+        path: "all-blood-donation-request",
         element: <PrivateRoute><AllDonationRequest></AllDonationRequest></PrivateRoute>
       },
       {

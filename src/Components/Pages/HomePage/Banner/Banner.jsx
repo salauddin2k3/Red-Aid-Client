@@ -13,6 +13,7 @@ import 'swiper/css/navigation';
 // import required modules
 import { Navigation } from 'swiper/modules';
 import { FaSearch } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 export default function Banner() {
     return (
@@ -27,8 +28,8 @@ export default function Banner() {
                                     <div><h2 className='animate__animated animate__fadeInLeft mt-4 text-3xl lg:text-5xl font-extrabold text-[#BA006F]'>Be a Hero, Give the gift of life!</h2></div>
                                     <p className='animate__animated animate__fadeInLeft mt-3 text-sm lg:text-base font-semibold text-[#27796f]'>Where compassion meets action. Discover volunteer opportunities tailored to your interests. <br />Join a vibrant community dedicated to making a difference. Connect, serve, <br />and impact lives. Start your journey with CareUnity today.
                                     </p>
-                                    <button className='animate__animated animate__fadeInLeft mt-7 btn bg-[#BA006F] hover:bg-[#27796f]'><span className='text-white font-bold text-lg'>Join as a donor</span></button>
-                                    <button className='ml-2 animate__animated animate__fadeInLeft mt-7 btn bg-[#27796f] hover:bg-[#BA006F]'><span className='text-white font-bold'><FaSearch></FaSearch></span><span className='text-white font-bold text-lg'>Search Donors</span></button>
+                                    <Link to="/reg"><button className='animate__animated animate__fadeInLeft mt-7 btn bg-[#BA006F] hover:bg-[#27796f]'><span className='text-white font-bold text-lg'>Join as a donor</span></button></Link>
+                                    <Link to="/search-page"><button className='ml-2 animate__animated animate__fadeInLeft mt-7 btn bg-[#27796f] hover:bg-[#BA006F]'><span className='text-white font-bold'><FaSearch></FaSearch></span><span className='text-white font-bold text-lg'>Search Donors</span></button></Link>
                                 </div>
                             </div>
                         </SwiperSlide>

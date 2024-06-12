@@ -10,7 +10,7 @@ const Posts = () => {
     const { data: posts = [] } = useQuery({
         queryKey: ['posts'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/allBLogPost`);
+            const res = await axios.get(`https://red-aid.vercel.app/allBLogPost`);
             return res.data;
         }
     });
