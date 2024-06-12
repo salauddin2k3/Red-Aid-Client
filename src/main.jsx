@@ -109,35 +109,35 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/dashboard",
-        element: <DashboardHome></DashboardHome>
+        element: <PrivateRoute><DashboardHome></DashboardHome></PrivateRoute>
       },
       {
         path: "user-profile",
-        element: <UserProfile></UserProfile>
+        element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
       },
       // Admin routes --------------------------
       {
         path: "all-user",
-        element: <AllUser></AllUser>
+        element: <PrivateRoute><AllUser></AllUser></PrivateRoute>
       },
       {
         path: "all-donation-request",
-        element: <AllDonationRequest></AllDonationRequest>
+        element: <PrivateRoute><AllDonationRequest></AllDonationRequest></PrivateRoute>
       },
       {
         path: "content-management",
-        element: <ContentManagement></ContentManagement>
+        element: <PrivateRoute><ContentManagement></ContentManagement></PrivateRoute>
       },
 
       // Donor Routes ----------------------------------
       {
         path: "my-donation-request",
-        element: <MyDonationRequest></MyDonationRequest>
+        element: <PrivateRoute><MyDonationRequest></MyDonationRequest></PrivateRoute>
       },
       {
         path: "create-donation-request",
@@ -145,7 +145,7 @@ const router = createBrowserRouter([
       },
       {
         path: "request-card-update/:id",
-        element: <RequestCardUpdate></RequestCardUpdate>
+        element: <PrivateRoute><RequestCardUpdate></RequestCardUpdate></PrivateRoute>
       },
       {
         path: 'reqDetails/:id',

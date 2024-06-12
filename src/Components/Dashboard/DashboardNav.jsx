@@ -7,7 +7,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 
 const DashboardNav = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
     const { data: users = [], isLoading, isFetching, } = useQuery({
         queryKey: ['users'],
@@ -31,7 +31,7 @@ const DashboardNav = () => {
                 users[0]?.role === "admin" &&
                 <div>
                     <NavLink to="/dashboard"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">Dashboard</li></NavLink>
-                    <NavLink to="/dashboard/all-user"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">Users</li></NavLink>
+                    <NavLink to="/dashboard/all-user"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">All Users</li></NavLink>
                     <NavLink to="/dashboard/all-donation-request"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">All Donation Requests</li></NavLink>
                     <NavLink to="/dashboard/content-management"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">Content Management</li></NavLink>
                     <hr className="m-4" />
@@ -48,6 +48,7 @@ const DashboardNav = () => {
                     <hr className="m-4" />
                     <NavLink to="/dashboard/user-profile"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">User Profile</li></NavLink>
                     <NavLink to="/"><li className=" text-white hover:bg-gray-900 py-2 px-4 block italic">Back to home</li></NavLink>
+                    <NavLink><li onClick={logOut} className=" text-white hover:bg-gray-900 py-2 px-4 block">Sign Out</li></NavLink>
                 </div>
             }
             {

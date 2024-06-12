@@ -1,13 +1,25 @@
+
+import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
 const MyRequestedCard = (info) => {
 
-    // console.log(info.info)
+    // const { id } = useParams();
 
     const navigateLocation = useLocation();
     const navigate = useNavigate();
+
+    // const { refetch } = useQuery({
+    //     queryKey: ['userData'],
+    //     queryFn: async () => {
+    //         const res = await axios.get(`http://localhost:5000/singleRequest/${id}`);
+    //         return res.data;
+    //     },
+    //     enabled: false // This will disable the automatic fetch
+    // });
+
 
 
     const handleDelete = (id) => {
@@ -40,7 +52,67 @@ const MyRequestedCard = (info) => {
                     navigate(navigateLocation?.state ? navigateLocation.state : '/');
                 }
             });
-    }
+    };
+
+    const handleMakeDone = user => {
+        // console.log(user)
+        axios.patch(`http://localhost:5000/status/done/${user._id}`)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: `Donor Name: ${user.name} & Donor Email: ${user.email}`,
+                        icon: "warning",
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, Confirm!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                title: "Confirmed!",
+                                icon: "success"
+                            });
+                        }
+                    });
+                    navigate(navigateLocation?.state ? navigateLocation.state : '/dashboard');
+                }
+                else {
+                    Swal.fire("Already Done!");
+                }
+                // refetch();
+                console.log(res.data);
+            })
+    };
+
+    const handleMakeCancel = user => {
+        // console.log(user)
+        axios.patch(`http://localhost:5000/status/cancel/${user._id}`)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: `Donor Name: ${user.name} & Donor Email: ${user.email}`,
+                        icon: "warning",
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, Confirm!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                title: "Confirmed!",
+                                icon: "success"
+                            });
+                        }
+                    });
+                    navigate(navigateLocation?.state ? navigateLocation.state : '/dashboard');
+                }
+                else {
+                    Swal.fire("Already Done!");
+                }
+                // refetch();
+                console.log(res.data);
+            })
+    };
 
 
     // console.log(info.info);
@@ -70,9 +142,17 @@ const MyRequestedCard = (info) => {
                                 <h2 className="font-medium"><span className="font-bold">Donation Time:</span> {info.info.donationTime}</h2>
                             </div>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
-                            <div className='mt-6 flex flex-col md:flex-col lg:flex-col justify-between lg:items-center gap-4'>
-                                <h2 className="font-medium"><span className="font-bold">Donor Name:</span> <span className="text-red-600">Null</span></h2>
-                                <h2 className="font-medium"><span className="font-bold">Donor Email:</span> <span className="text-red-600">Null</span></h2>
+                            <div className="mt-6 flex flex-col md:flex-col lg:flex-col justify-between lg:items-center gap-4">
+                                {
+                                    info.info.status === "inprogress"
+                                        ?
+                                        <div>
+                                            <h2 className="font-medium"><span className="font-bold">Donor Name:</span> {info.info.name}</h2>
+                                            <h2 className="font-medium"><span className="font-bold">Donor Email:</span> {info.info.email}</h2>
+                                        </div>
+                                        :
+                                        ""
+                                }
                             </div>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
                             <div className="mt-5 flex items-center justify-center">
@@ -81,9 +161,24 @@ const MyRequestedCard = (info) => {
                                 </div>
                             </div>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
+                            <div className=' mt-6 border-b-2 border-dashed'></div>
                             <div className="flex justify-center gap-5">
                                 <div className="w-full"><Link to={`/dashboard/request-card-update/${info.info._id}`}><button className="btn bg-[#BA006F] text-white mt-6 w-full">Edit</button></Link></div>
                                 <div className="w-full"><Link><button onClick={() => handleDelete(info.info._id)} className="btn bg-[#BA006F] text-white mt-6 w-full">Delete</button></Link></div>
+                            </div>
+                            <div className=' mt-6 border-b-2 border-dashed'></div>
+                            <div className=' mt-6 border-b-2 border-dashed'></div>
+                            <div>
+                                {
+                                    info.info.status === "inprogress"
+                                        ?
+                                        <div className="flex justify-center gap-5">
+                                            <div className="w-full"><Link><button onClick={() => handleMakeDone(info.info)} className="btn bg-[#BA006F] text-white mt-6 w-full">Done</button></Link></div>
+                                            <div className="w-full"><Link><button onClick={() => handleMakeCancel(info.info)} className="btn bg-[#BA006F] text-white mt-6 w-full">Cancel</button></Link></div>
+                                        </div>
+                                        :
+                                        ""
+                                }
                             </div>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
                             <Link to={`/dashboard/reqDetails/${info.info._id}`}><button className="btn bg-[#00929E] text-white mt-6 w-full">View Details</button></Link>

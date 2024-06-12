@@ -40,6 +40,7 @@ const DashboardHome = () => {
     });
 
 
+    // console.log(users[0].role);
 
     return (
         <div className="mb-36">
