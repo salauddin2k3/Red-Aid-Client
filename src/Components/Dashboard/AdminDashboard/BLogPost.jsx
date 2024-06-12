@@ -82,6 +82,39 @@ const BLogPost = ({ post }) => {
             })
     };
 
+
+    const handleBlogDelete = (id) => {
+        fetch(`http://localhost:5000/blog/delete/${id}`, {
+            method: "DELETE",
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    // setControl(!control);
+                    // alert("Deleted")
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Blog has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    });
+
+                    navigate(navigateLocation?.state ? navigateLocation.state : '/dashboard');
+                }
+            });
+    };
+
     return (
         <div>
             <div className="max-w-xs rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
@@ -128,7 +161,7 @@ const BLogPost = ({ post }) => {
                     }
                 </div>
                 <div className="mx-3 pb-3">
-                    <button className="btn w-full bg-[#BA006F] text-white">Delete</button>
+                    <button onClick={() => handleBlogDelete(post._id)}  className="btn w-full bg-[#BA006F] text-white">Delete</button>
                 </div>
             </div>
 
@@ -142,6 +175,7 @@ BLogPost.propTypes = {
         thumbnailImage: PropTypes.string.isRequired,
         blogContent: PropTypes.string.isRequired,
         status: PropTypes.string.isRequired,
+        _id: PropTypes.string.isRequired,
     }).isRequired,
 };
 
