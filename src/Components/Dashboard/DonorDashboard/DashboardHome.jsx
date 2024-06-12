@@ -7,6 +7,7 @@ import axios from "axios";
 import MyRequestedCard from "./MyRequestedCard";
 import { Link } from "react-router-dom";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import DashboardHomeCard from "./DashboardHomeCard";
 
 
 const DashboardHome = () => {
@@ -57,6 +58,14 @@ const DashboardHome = () => {
                     deleteSpeed={80}
                     delaySpeed={1000}
                 ></Typewriter></span></h2>
+            </div>
+            <div className="mt-16 flex justify-center">
+                <div>
+                    {
+                        users[0]?.role === "donor" ||
+                        <DashboardHomeCard></DashboardHomeCard>
+                    }
+                </div>
             </div>
             {
                 users[0]?.role === "donor"
