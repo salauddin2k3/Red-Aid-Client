@@ -71,22 +71,26 @@ const Reg = () => {
         setRegError('');
         setRegSuccess('');
 
-        if (password.length < 6) {
-            setRegError('Password must be at least 6 characters long');
-            if (!/[A-Z]/.test(password)) {
-                setRegError('Password must contain at least one uppercase letter');
-                return;
-            }
-            if (!/[a-z]/.test(password)) {
-                setRegError('Password must contain at least one lowercase letter');
-                return;
-            }
-            return;
-        }
         if (password === confirmPassword) {
-            setRegError('Confirm Password Wrong');
+            if (password.length < 6) {
+                setRegError('Password must be at least 6 characters long');
+                if (!/[A-Z]/.test(password)) {
+                    setRegError('Password must contain at least one uppercase letter');
+                    return;
+                }
+                if (!/[a-z]/.test(password)) {
+                    setRegError('Password must contain at least one lowercase letter');
+                    return;
+                }
+                return;
+            }
+        }
+        else{
+            Swal.fire("Password Not Matched!");
             return;
         }
+
+
 
 
         // Create User
@@ -147,7 +151,7 @@ const Reg = () => {
                             <div className="w-full">
                                 <div className="space-y-1 text-sm pb-2">
                                     <label htmlFor="name" className="block dark:text-gray-600">Name</label>
-                                    <input  type="text" name="name" id="name" required placeholder="name" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600 border border-gray-300" />
+                                    <input type="text" name="name" id="name" required placeholder="name" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600 border border-gray-300" />
                                 </div>
                                 <div className="space-y-1 text-sm pb-2">
                                     <label htmlFor="name" className="block dark:text-gray-600 pb-1">Blood Group</label>
@@ -210,7 +214,7 @@ const Reg = () => {
                                 </div>
                                 <div className="relative space-y-1 text-sm pb-2">
                                     <label htmlFor="password" className="block dark:text-gray-600">Confirm Password</label>
-                                    <input required type={showPassword ? "text" : "password"} name="confirmPassword" id="confirmPassword" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600 border border-gray-300" />
+                                    <input required type={confirmShowPassword ? "text" : "password"} name="confirmPassword" id="confirmPassword" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600 border border-gray-300" />
                                     <span className="absolute right-3 bottom-5 text-lg text-gray-600" onClick={() => setConfirmShowPassword(!confirmShowPassword)}>
                                         {
                                             confirmShowPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
