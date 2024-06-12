@@ -39,11 +39,11 @@ const DashboardHome = () => {
         }
     });
 
-    if(isLoading){
+    if (isLoading) {
         return <div>Test</div>
     }
 
-    console.log(users[0].name);
+    console.log(users[0].role);
 
     return (
         <div className="mb-36">
@@ -59,25 +59,35 @@ const DashboardHome = () => {
                 ></Typewriter></span></h2>
             </div>
             {
-                info[0] &&
-                <div className="">
-                    <h2 className="text-5xl font-bold text-center mt-20 text-[#00929E]">My Donation Request:</h2>
-                    <div className="border border-gray-200 px-5 mt-8 rounded-lg">
-                        <div className="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                users[0]?.role === "donor"
+                    ?
+                    <div>
+                        <div>
                             {
-                                info?.map(info => <MyRequestedCard
-                                    info={info}
-                                    key={info._id}
-                                ></MyRequestedCard>)
+                                info[0] &&
+                                <div className="mx-5">
+                                    <h2 className="text-5xl font-bold text-center mt-20 text-[#00929E]">My Donation Request:</h2>
+                                    <div className="border border-gray-200 px-5 mt-8 rounded-lg">
+                                        <div className="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                            {
+                                                info?.map(info => <MyRequestedCard
+                                                    info={info}
+                                                    key={info._id}
+                                                ></MyRequestedCard>)
+                                            }
+                                        </div>
+                                    </div>
+                                    <div className="mt-14 text-center">
+                                        <div>
+                                            <Link to='/dashboard/my-donation-request'><h2><button className="btn bg-[#BA006F] text-white w-1/3">See All Post<span><FaLongArrowAltRight /></span></button></h2></Link>
+                                        </div>
+                                    </div>
+                                </div>
                             }
                         </div>
                     </div>
-                    <div className="mt-14 text-center">
-                        <div>
-                            <Link to='/dashboard/my-donation-request'><h2><button className="btn bg-[#BA006F] text-white w-1/3">See All Post<span><FaLongArrowAltRight /></span></button></h2></Link>
-                        </div>
-                    </div>
-                </div>
+                    :
+                    ''
             }
         </div>
     );
