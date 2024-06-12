@@ -36,6 +36,7 @@ import RequestCardUpdate from './Components/Dashboard/DonorDashboard/RequestCard
 import ReqCardDetails from './Components/Dashboard/DonorDashboard/ReqCardDetails';
 import DonationCardDetails from './Components/Pages/DonationRequests/DonationCardDetails';
 import UserProfile from './Components/Dashboard/UserProfile';
+import AddBlog from './Components/Dashboard/AdminDashboard/AddBlog';
 
 const queryClient = new QueryClient();
 
@@ -132,6 +133,10 @@ const router = createBrowserRouter([
       {
         path: "content-management",
         element: <PrivateRoute><ContentManagement></ContentManagement></PrivateRoute>
+      },
+      {
+        path: "content-management/add-blog",
+        element: <PrivateRoute><AddBlog></AddBlog></PrivateRoute>
       },
 
       // Donor Routes ----------------------------------

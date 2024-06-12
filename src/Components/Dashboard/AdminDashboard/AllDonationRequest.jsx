@@ -13,7 +13,7 @@ const AllDonationRequest = () => {
         }
     });
 
-    console.log(info);
+    // console.log(info);
 
 
     return (

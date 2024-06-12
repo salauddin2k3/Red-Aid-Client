@@ -42,7 +42,7 @@ const UserProfile = () => {
         // Add logic to save updated data to the database here
         try {
             const response = await axios.put(`http://localhost:5000/users/update/${user?.email}`, formData);
-            console.log("Data saved successfully", response.data);
+            // console.log("Data saved successfully", response.data);
             if (response.data?.matchedCount > 0) {
                 // console.log(data);
                 // alert("data Update")

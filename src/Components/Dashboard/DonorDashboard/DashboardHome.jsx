@@ -31,7 +31,7 @@ const DashboardHome = () => {
         }
     });
 
-    const { data: users = [] } = useQuery({
+    const { data: users = [], isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axios.get(`http://localhost:5000/users/${user?.email}`);
@@ -39,8 +39,11 @@ const DashboardHome = () => {
         }
     });
 
+    if(isLoading){
+        return <div>Test</div>
+    }
 
-    // console.log(users[0].role);
+    console.log(users[0].name);
 
     return (
         <div className="mb-36">

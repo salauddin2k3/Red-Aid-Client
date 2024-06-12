@@ -15,7 +15,7 @@ const DonationRequest = () => {
         }
     });
 
-    console.log(info);
+    // console.log(info);
 
 
     return (

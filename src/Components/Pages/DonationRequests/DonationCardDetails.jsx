@@ -43,7 +43,7 @@ const DonationCardDetails = () => {
                 else {
                     Swal.fire("Already Donated!");
                 }
-                console.log(res.data);
+                // console.log(res.data);
                 refetch();
             })
     };

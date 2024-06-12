@@ -1,12 +1,18 @@
 
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 
 const MyRequestedCard = (info) => {
 
+    // console.log(info.info)
     // const { id } = useParams();
+
+    const { user } = useContext(AuthContext);
 
     const navigateLocation = useLocation();
     const navigate = useNavigate();
@@ -20,6 +26,15 @@ const MyRequestedCard = (info) => {
     //     enabled: false // This will disable the automatic fetch
     // });
 
+    const { data: users = [] } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await axios.get(`http://localhost:5000/users/${user?.email}`);
+            return res.data;
+        }
+    });
+
+    // console.log(users[0].role);
 
 
     const handleDelete = (id) => {
@@ -80,7 +95,7 @@ const MyRequestedCard = (info) => {
                     Swal.fire("Already Done!");
                 }
                 // refetch();
-                console.log(res.data);
+                // console.log(res.data);
             })
     };
 
@@ -110,7 +125,7 @@ const MyRequestedCard = (info) => {
                     Swal.fire("Already Done!");
                 }
                 // refetch();
-                console.log(res.data);
+                // console.log(res.data);
             })
     };
 
@@ -162,11 +177,21 @@ const MyRequestedCard = (info) => {
                             </div>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
-                            <div className="flex justify-center gap-5">
-                                <div className="w-full"><Link to={`/dashboard/request-card-update/${info.info._id}`}><button className="btn bg-[#BA006F] text-white mt-6 w-full">Edit</button></Link></div>
-                                <div className="w-full"><Link><button onClick={() => handleDelete(info.info._id)} className="btn bg-[#BA006F] text-white mt-6 w-full">Delete</button></Link></div>
+                            <div>
+                                {
+                                    users[0]?.role === "volunteer"
+                                        ?
+                                        ''
+                                        :
+                                        <div>
+                                            <div className="flex justify-center gap-5">
+                                                <div className="w-full"><Link to={`/dashboard/request-card-update/${info.info._id}`}><button className="btn bg-[#BA006F] text-white mt-6 w-full">Edit</button></Link></div>
+                                                <div className="w-full"><Link><button onClick={() => handleDelete(info.info._id)} className="btn bg-[#BA006F] text-white mt-6 w-full">Delete</button></Link></div>
+                                            </div>
+                                            <div className=' mt-6 border-b-2 border-dashed'></div>
+                                        </div>
+                                }
                             </div>
-                            <div className=' mt-6 border-b-2 border-dashed'></div>
                             <div className=' mt-6 border-b-2 border-dashed'></div>
                             <div>
                                 {

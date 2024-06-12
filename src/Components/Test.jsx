@@ -9,9 +9,9 @@ const Test = () => {
 
     // const [control, setControl] = useState(false);
 
-    const [info, setInfo] = useState([]);
+    const [ setInfo] = useState([]);
 
-    console.log(info);
+    // console.log(info);
 
     useEffect(() => {
         fetch('https://infinity-care.vercel.app/anotherAllInfo')
