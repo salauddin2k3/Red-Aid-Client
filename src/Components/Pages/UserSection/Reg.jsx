@@ -1,13 +1,14 @@
 import { useContext, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-// import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Reg = () => {
 
@@ -24,7 +25,6 @@ const Reg = () => {
         }
     });
 
-
     // Upazilas---------------------------
 
     const { data: upazilas } = useQuery({
@@ -35,24 +35,18 @@ const Reg = () => {
         }
     });
 
-
-
-
     const [regError, setRegError] = useState('');
     const [regSuccess, setRegSuccess] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [confirmShowPassword, setConfirmShowPassword] = useState(false);
 
-    const { createUser, UserUpdateProfile } = useContext(AuthContext)
+    const { createUser, UserUpdateProfile } = useContext(AuthContext);
 
-    const userLogin = <>
-
+    const userLogin = (
         <NavLink to={'/login'}><span className="text-xs text-center font-bold sm:px-6 dark:text-gray-600 underline">Login</span></NavLink>
+    );
 
-    </>
-
-
-    const handleReg = e => {
+    const handleReg = async (e) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
         const name = form.get('name');
@@ -60,91 +54,91 @@ const Reg = () => {
         const bloodGroup = form.get("bloodGroup");
         const upazilas = form.get("upazilas");
         const district = form.get("district");
-        const url = form.get('url');
+        const file = form.get('url');
         const password = form.get('password');
         const confirmPassword = form.get('confirmPassword');
         const role = "donor";
         const status = "Active";
-        // console.log(email, password, name, url, bloodGroup, upazilas, district);
 
         // Reset Error & Success
         setRegError('');
         setRegSuccess('');
 
-        if (password === confirmPassword) {
-            if (password.length < 6) {
-                setRegError('Password must be at least 6 characters long');
-                if (!/[A-Z]/.test(password)) {
-                    setRegError('Password must contain at least one uppercase letter');
-                    return;
-                }
-                if (!/[a-z]/.test(password)) {
-                    setRegError('Password must contain at least one lowercase letter');
-                    return;
-                }
-                return;
-            }
-        }
-        else{
+        if (password !== confirmPassword) {
             Swal.fire("Password Not Matched!");
             return;
         }
 
+        if (password.length < 6) {
+            setRegError('Password must be at least 6 characters long');
+            if (!/[A-Z]/.test(password)) {
+                setRegError('Password must contain at least one uppercase letter');
+                return;
+            }
+            if (!/[a-z]/.test(password)) {
+                setRegError('Password must contain at least one lowercase letter');
+                return;
+            }
+            return;
+        }
 
+        try {
+            const imageData = new FormData();
+            imageData.append('image', file);
 
+            const uploadRes = await axios.post(image_hosting_api, imageData);
+            const imageUrl = uploadRes.data.data.display_url;
 
-        // Create User
-        createUser(email, password, name, url, bloodGroup, upazilas, district, role, status)
-            .then(result => {
+            // Create User
+            const result = await createUser(email, password);
 
-                // Create user entry in the database
-                const userInfo = {
-                    name: name,
-                    email: email,
-                    url: url,
-                    bloodGroup: bloodGroup,
-                    upazilas: upazilas,
-                    district: district,
-                    role: role,
-                    status: status
-                }
+            // Create user entry in the database
+            const userInfo = {
+                name: name,
+                email: email,
+                url: imageUrl,
+                bloodGroup: bloodGroup,
+                upazilas: upazilas,
+                district: district,
+                role: role,
+                status: status
+            };
 
-                axios.post('http://localhost:5000/users', userInfo)
-                    .then(res => {
-                        if (res.data.insertedId) {
-                            setRegSuccess('User Created Successfully');
-                            // alert('User Created Successfully');
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: "User Created Successfully",
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
+            const res = await axios.post('http://localhost:5000/users', userInfo);
 
-                            UserUpdateProfile(name, url);
+            if (res.data.insertedId) {
+                setRegSuccess('User Created Successfully');
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "User Created Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
 
-                            // Navigate
-                            navigate(location?.state ? location.state : '/');
-                        }
-                    })
+                await UserUpdateProfile(name, imageUrl);
 
-                console.log(result.user);
-            })
-            .catch(error => {
-                console.error(error);
-                setRegError(error.message);
-                alert(error.message);
-            })
+                // Navigate
+                navigate(location?.state ? location.state : '/');
+            }
+
+            console.log(result.user);
+        } catch (error) {
+            console.error(error);
+            setRegError(error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.message,
+            });
+        }
     }
-
-
 
     return (
         <div className="pt-52 flex items-center justify-center ">
             <Helmet><title>Registration | Red Aid</title></Helmet>
             <div>
-                <div className="w-full  px-9 py-10 space-y-5 rounded-xl dark:bg-gray-50 dark:text-gray-800 shadow-2xl">
+                <div className="w-full px-9 py-10 space-y-5 rounded-xl dark:bg-gray-50 dark:text-gray-800 shadow-2xl">
                     <h1 className="text-2xl font-bold text-center">Registration</h1>
                     <form onSubmit={handleReg} noValidate="" className="space-y-6">
                         <div className="flex gap-10">
@@ -194,7 +188,6 @@ const Reg = () => {
                                 <div className="space-y-1 text-sm pb-2">
                                     <label htmlFor="email" className="block dark:text-gray-600">Email</label>
                                     <input required type="email" name="email" id="email" placeholder="email" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600 border border-gray-300" />
-                                    {/* <input type="text" name="name" id="name" required placeholder="name" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600 border border-gray-300" /> */}
                                 </div>
                                 <div className="space-y-1 text-sm pb-2">
                                     <label htmlFor="email" className="block dark:text-gray-600 pb-1">District</label>
@@ -206,14 +199,17 @@ const Reg = () => {
                                             }
                                         </select>
                                     </label>
-                                    {/* <input type="email" name="email" id="name" placeholder="email" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600 border border-gray-300" /> */}
                                 </div>
-                                <div className="space-y-1 text-sm pb-2">
+                                {/* <div className="space-y-1 text-sm pb-2">
                                     <label htmlFor="email" className="block dark:text-gray-600">Photo Url</label>
                                     <input required type="text" name="url" id="url" placeholder="url" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600 border border-gray-300" />
+                                </div> */}
+                                <div className="space-y-1 text-sm pb-2">
+                                    <label htmlFor="email" className="block dark:text-gray-600">Upload Photo</label>
+                                    <input name="url" type="file" className="file-input file-input-bordered w-full max-w-xs" />
                                 </div>
                                 <div className="relative space-y-1 text-sm pb-2">
-                                    <label htmlFor="password" className="block dark:text-gray-600">Confirm Password</label>
+                                    <label htmlFor="confirmPassword" className="block dark:text-gray-600">Confirm Password</label>
                                     <input required type={confirmShowPassword ? "text" : "password"} name="confirmPassword" id="confirmPassword" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600 border border-gray-300" />
                                     <span className="absolute right-3 bottom-5 text-lg text-gray-600" onClick={() => setConfirmShowPassword(!confirmShowPassword)}>
                                         {
