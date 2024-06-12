@@ -35,6 +35,7 @@ import DashboardHome from './Components/Dashboard/DonorDashboard/DashboardHome';
 import RequestCardUpdate from './Components/Dashboard/DonorDashboard/RequestCardUpdate';
 import ReqCardDetails from './Components/Dashboard/DonorDashboard/ReqCardDetails';
 import DonationCardDetails from './Components/Pages/DonationRequests/DonationCardDetails';
+import UserProfile from './Components/Dashboard/UserProfile';
 
 const queryClient = new QueryClient();
 
@@ -114,6 +115,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <DashboardHome></DashboardHome>
+      },
+      {
+        path: "user-profile",
+        element: <UserProfile></UserProfile>
       },
       // Admin routes --------------------------
       {
