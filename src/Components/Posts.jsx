@@ -1,45 +1,33 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../Providers/AuthProvider";
-import Post from "./Post";
-import { FaLongArrowAltRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
+
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import BLogPost from "./Dashboard/AdminDashboard/BLogPost";
 
 
 const Posts = () => {
 
-    const { user } = useContext(AuthContext);
 
-    // const [control, setControl] = useState(false);
-
-    const [info, setInfo] = useState([]);
-
-    useEffect(() => {
-        fetch('https://infinity-care.vercel.app/allPost')
-            .then(res => res.json())
-            .then((data) => {
-                // console.log(data);
-                const filter = data.slice(0, 6);
-                // console.log(filter);
-                setInfo(filter);
-            });
-    }, [user]);
+    const { data: posts = [] } = useQuery({
+        queryKey: ['posts'],
+        queryFn: async () => {
+            const res = await axios.get(`http://localhost:5000/allBLogPost`);
+            return res.data;
+        }
+    });
 
 
 
     return (
         <div className="">
             <h2 className="text-5xl font-bold text-center mt-20 text-[#00929E]">Volunteer Needs Now:</h2>
-            <div className="border border-gray-200 px-5 mt-8 rounded-lg">
-                <div className="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="mt-20 flex justify-center">
+                <div className="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     {
-                        info?.map(info => <Post
-                            info={info}
-                            key={info._id}
-                        ></Post>)
+                        posts?.map(post => <BLogPost
+                            key={post._id}
+                            post={post}
+                        ></BLogPost>)
                     }
-                </div>
-                <div className="mt-10 mb-8 text-center">
-                    <Link to='/donation-requests'><h2><button className="btn bg-[#BA006F] text-white w-1/3">See All Post<span><FaLongArrowAltRight /></span></button></h2></Link>
                 </div>
             </div>
         </div>

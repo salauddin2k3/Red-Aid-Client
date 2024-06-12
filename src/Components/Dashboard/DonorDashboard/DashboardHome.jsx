@@ -40,7 +40,7 @@ const DashboardHome = () => {
     });
 
     if (isLoading) {
-        return <div>Test</div>
+        return <div>Loading.........</div>
     }
 
     console.log(users[0].role);

@@ -18,7 +18,7 @@ const Footer = () => {
                     </div>
                 </nav>
                 <aside>
-                    <p>Copyright © 2024 - All right reserved by <span className="font-semibold text-[#8C0052]">Infinity Care</span> Ltd</p>
+                    <p>Copyright © 2024 - All right reserved by <span className="font-semibold text-[#8C0052]">Red Aid</span> Ltd</p>
                 </aside>
             </footer>
         </div>

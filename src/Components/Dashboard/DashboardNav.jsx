@@ -37,6 +37,7 @@ const DashboardNav = () => {
                     <hr className="m-4" />
                     <NavLink to="/dashboard/user-profile"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">User Profile</li></NavLink>
                     <NavLink to="/"><li className=" text-white hover:bg-gray-900 py-2 px-4 block italic">Back to home</li></NavLink>
+                    <NavLink><li onClick={logOut} className=" text-white hover:bg-gray-900 py-2 px-4 block">Sign Out</li></NavLink>
                 </div>
             }
             {
@@ -60,6 +61,7 @@ const DashboardNav = () => {
                     <hr className="m-4" />
                     <NavLink to="/dashboard/user-profile"><li className=" text-white hover:bg-gray-900 py-2 px-4 block">User Profile</li></NavLink>
                     <NavLink to="/"><li className=" text-white hover:bg-gray-900 py-2 px-4 block italic">Back to home</li></NavLink>
+                    <NavLink><li onClick={logOut} className=" text-white hover:bg-gray-900 py-2 px-4 block">Sign Out</li></NavLink>
                 </div>
             }
         </div>

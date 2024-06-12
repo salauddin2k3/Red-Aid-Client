@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const DonationReqCard = (info) => {
 
+    console.log(info.info);
 
     return (
         <div className="" data-aos="fade-up" data-aos-duration="3000" >

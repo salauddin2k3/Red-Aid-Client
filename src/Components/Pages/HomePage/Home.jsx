@@ -1,10 +1,10 @@
 import { Helmet } from "react-helmet-async";
-// import Contact from "./Contact";
 import Faq from "../../Faq";
-// import LottieReact from "./LottieReact";
-import Posts from "../../Posts";
+// import LottieReact from "../../LottieReact";
+// import Posts from "../../Posts";
 import Features from "../../Features";
 import Banner from "./Banner/Banner";
+import Contact from "../../Contact";
 
 
 const Home = () => {
@@ -13,9 +13,9 @@ const Home = () => {
             <Helmet><title>Red Aid</title></Helmet>
             <Banner></Banner>
             {/* <LottieReact></LottieReact> */}
-            <Posts></Posts>
+            {/* <Posts></Posts> */}
             <Faq></Faq>
-            {/* <Contact></Contact> */}
+            <Contact></Contact>
             <Features></Features>
         </div>
     );

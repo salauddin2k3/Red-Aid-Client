@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
 
 const BLogPost = ({ post }) => {
 
     const navigateLocation = useLocation();
     const navigate = useNavigate();
+
+    const { user } = useContext(AuthContext);
 
     const [showFullContent, setShowFullContent] = useState(false);
 
@@ -23,6 +27,20 @@ const BLogPost = ({ post }) => {
         ? post.blogContent.substring(0, previewLength) + '...'
         : post.blogContent;
 
+
+    const { data: users = [], isLoading } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await axios.get(`http://localhost:5000/users/${user?.email}`);
+            return res.data;
+        }
+    });
+
+    if (isLoading) {
+        return <div>Loading.........</div>
+    }
+
+    // console.log(users[0].role);
 
     const handleMakePublished = user => {
         // console.log(user)
@@ -148,20 +166,28 @@ const BLogPost = ({ post }) => {
                 </div>
                 <div>
                     {
-                        post.status === "draft" &&
-                        <div className="mx-3 pb-3">
-                            <button onClick={() => handleMakePublished(post)} className="btn w-full bg-[#00929E] text-white">Publish</button>
+                        users[0]?.role === "admin" &&
+                        <div>
+                            <div>
+                                {
+                                    post.status === "draft" &&
+                                    <div className="mx-3 pb-3">
+                                        <button onClick={() => handleMakePublished(post)} className="btn w-full bg-[#00929E] text-white">Publish</button>
+                                    </div>
+                                }
+                                {
+                                    post.status === "published" &&
+                                    <div className="mx-3 pb-3">
+                                        <button onClick={() => handleMakeDraft(post)} className="btn w-full bg-[#00929E] text-white">Unpublish</button>
+                                    </div>
+                                }
+                            </div>
+                            <div className="mx-3 pb-3">
+                                <button onClick={() => handleBlogDelete(post._id)} className="btn w-full bg-[#BA006F] text-white">Delete</button>
+                            </div>
                         </div>
                     }
-                    {
-                        post.status === "published" &&
-                        <div className="mx-3 pb-3">
-                            <button onClick={() => handleMakeDraft(post)} className="btn w-full bg-[#00929E] text-white">Unpublish</button>
-                        </div>
-                    }
-                </div>
-                <div className="mx-3 pb-3">
-                    <button onClick={() => handleBlogDelete(post._id)}  className="btn w-full bg-[#BA006F] text-white">Delete</button>
+
                 </div>
             </div>
 
