@@ -20,4 +20,26 @@ Donate blood today and be the lifeline someone desperately needs. Every drop cou
 - HTML5 & CSS3 for styling
 - Firebase for hosting and backend services
 
+## Installation
+If you want to clone the project and run it locally, follow these steps:
+
+1. **Clone the repository:**
+    ```bash
+    git clone https://github.com/salauddin2k3/Red-Aid-Client.git
+    cd red-aid-client
+    ```
+
+2. **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3. **Start the development server:**
+    ```bash
+    npm start
+    ```
+
+4. **Open the application:**
+    - Once the development server is running, open your browser and navigate to `http://localhost:3000` to view the application.
+
 ## Thanks
